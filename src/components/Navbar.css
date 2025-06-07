@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.custom-navbar {
+  background: linear-gradient(180deg, #1C0623 0%, #40204B 100%);
+  padding: 1rem 0;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+}
+
+.brand-section .logo-image {
+  width: 50px;
+  height: auto;
+}
+
+.brand-section .brand-text {
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: left;
+  margin-left: 12px;
+  transition: transform 0.3s, text-shadow 0.3s;
+}
+
+.brand-section .brand-text:hover {
+  text-shadow: 0 0 10px #ed7eff;
+  transform: scale(1.05);
+}
+
+.brand-section .logo-text:first-child {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.basic-navbar-nav .nav-link-custom {
+  color: #ffffff !important;
+  margin: 0 0.8rem;
+  position: relative;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.basic-navbar-nav .nav-link-custom:hover {
+  color: #ED7EFF !important;
+  text-shadow: 0 0 8px #ED7EFF;
+  transform: translateY(-2px);
+}
+
+.basic-navbar-nav .nav-link-custom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ED7EFF;
+  transition: width 0.3s ease;
+}
+
+.basic-navbar-nav .nav-link-custom:hover::after {
+  width: 100%;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.social-links a {
+  color: #ED7EFF;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+  color: #B41EB7;
+  transform: scale(1.2);
+  text-shadow: 0 0 5px #B41EB7;
+}
