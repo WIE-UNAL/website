@@ -37,10 +37,10 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav" className="basic-navbar-nav">
                     <Nav className="ms-auto">
                         {/* Sección de Páginas */}
-                        <Nav.Link as={NavLink} to="/" className="nav-link-custom">Home</Nav.Link>
+                        <Nav.Link as={NavLink} to="/" className="nav-link-custom">Inicio</Nav.Link>
                         <Nav.Link as={NavLink} to="/proyectos" className="nav-link-custom">Proyectos</Nav.Link>
                         <Nav.Link as={NavLink} to="/miembros" className="nav-link-custom">Miembros</Nav.Link>
-                        <Nav.Link as={NavLink} to="/log-in" className="nav-link-custom">Ingresar</Nav.Link>
+                        <Nav.Link as={NavLink} to="/log-in" className="nav-link-login">Ingresar</Nav.Link>
 
                         {/* Sección de Redes Sociales */}
                         <div className="social-links">
