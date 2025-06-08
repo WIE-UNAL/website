@@ -7,6 +7,9 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar.jsx';
+import Footer from "./components/Footer.jsx";
+
+import Test from './routes/test.jsx'
 
 function App() {
   return (
@@ -14,9 +17,10 @@ function App() {
       <Navbar />
       <div className="App-container">
         <Routes>
-          {/*<Route path="/" element={<Navbar />} />*/}
+          <Route path="/" element={<Test />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

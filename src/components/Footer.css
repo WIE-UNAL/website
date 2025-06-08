@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.custom-footer {
+    background: linear-gradient(0deg, #1C0623 0%, #40204B 100%);
+    padding: 2rem 2rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    position: sticky;
+}
+
+.footer-content {
+    margin-bottom: 1.5rem;
+}
+
+.footer-section {
+    margin-bottom: 0rem;
+}
+
+.footer-section .brand-section {
+  display: flex;
+  align-items: center;
+}
+
+.footer-section .brand-text,
+.footer-section h3 {
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: left;
+  transition: transform 0.3s, text-shadow 0.3s;
+  line-height: 1.5;
+  padding-top: 10px;
+}
+
+.footer-section .logo-text:first-child,
+.footer-section h3 {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.footer-section .brand-text:hover {
+  text-shadow: 0 0 10px #ed7eff;
+  transform: scale(1.05);
+}
+
+.footer-section .logo-image {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.footer-section .footer-desc {
+    color: #fff;
+    text-align: left;
+}
+
+.footer-section .social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-section .social-links a {
+  color: #ED7EFF;
+  font-size: 1.25rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-section .social-links a:hover {
+  color: #B41EB7;
+  transform: scale(1.2);
+  text-shadow: 0 0 5px #B41EB7;
+}
+
+.footer-section li {
+  list-style: none;
+  text-align: start;
+}
+
+.footer-section li::before {
+  content: "";
+  display: inline-block;
+}
+
+
+.footer-section li a {
+  display: block;
+  text-align: left;
+  margin-left: -1rem;
+  color: #ffffff !important;
+  position: relative;
+  font-size: 1rem;
+  line-height: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.footer-section li a:hover {
+  color: #ED7EFF !important;
+  text-shadow: 0 0 8px #ED7EFF;
+  transform: translateY(-2px);
+}
+.footer-section li a::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ED7EFF;
+  transition: width 0.3s ease;
+}
+.footer-section li a:hover::after {
+  width: 100%;
+}
+
+.custom-footer .copyright {
+    border-top: 1px solid #ffffff34; 
+    padding-top: 1rem; 
+    margin-top: 15px;
+    color: #fff;
+    font-size: 0.75rem;
+}
