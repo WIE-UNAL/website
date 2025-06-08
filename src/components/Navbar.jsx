@@ -31,7 +31,9 @@ const NavigationBar = () => {
                     </div>
                 </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav" as="button" className="custom-toggler">
+                    <i class="fa-solid fa-bars"></i>
+                </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav" className="basic-navbar-nav">
                     <Nav className="ms-auto">
                         {/* Sección de Páginas */}
