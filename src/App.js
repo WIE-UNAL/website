@@ -10,6 +10,7 @@ import Navbar from './components/Navbar.jsx';
 import Footer from "./components/Footer.jsx";
 
 import Test from './routes/test.jsx'
+import Home from './routes/Home.jsx'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Navbar />
       <div className="App-container">
         <Routes>
-          <Route path="/" element={<Test />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
       <Footer />
