@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './Home.css';
+
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
 import img from "../resources/home/home.png";
 
 import { getProyectosDestacados } from "../ctrl/ProyectosCtrl.js";
@@ -76,6 +78,86 @@ const Home = () => {
     }
   };
 
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from(".start-block", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from(".projects, .mision-vision, .suscripcion", {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: ".projects, .mision-vision, .suscripcion",
+          start: "top 80%",
+        },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from(".project-item", {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.8,
+        ease: "back.out(1.5)",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: ".projects",
+          start: "top 85%",
+        },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from(".card-content", {
+        opacity: 0,
+        x: -100,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: ".mision-vision",
+          start: "top 85%",
+        },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from("form", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".suscripcion",
+          start: "top 85%",
+        },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="home">
       <Container fluid className="start">
@@ -145,7 +227,10 @@ const Home = () => {
               <i class="fa-solid fa-bullseye"></i>
               <h3>Misión</h3>
               <p className="desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales lacinia ipsum a venenatis. Etiam leo est, pretium eget aliquet sed, lobortis sit amet dolor.
+                Nuestra misión es inspirar, empoderar y acompañar a niñas, adolescentes y jóvenes universitarias en el descubrimiento y fortalecimiento de su potencial en la ingeniería 
+                y la investigación científica. A través de proyectos, talleres, mentorías, charlas y espacios colaborativos, buscamos romper estereotipos, cerrar brechas de género y 
+                fomentar liderazgos transformadores en la academia y en el ejercicio profesional. Creemos que la diversidad impulsa la innovación y que una comunidad inclusiva, 
+                interdisciplinaria y comprometida con la equidad puede construir un futuro más justo, creativo y con oportunidades para todas y todos.
               </p>
             </div>
           </Col>
@@ -154,7 +239,10 @@ const Home = () => {
               <i class="fa-solid fa-eye"></i>
               <h3>Visión</h3>
               <p className="desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales lacinia ipsum a venenatis. Etiam leo est, pretium eget aliquet sed, lobortis sit amet dolor.
+                En 2026, WIE UNAL será un referente  en equidad de género en STEM, articulando ciencia, ingeniería y acción social. Desde el enfoque social, llevaremos conocimiento a 
+                niñas, niños y jóvenes en contextos de vulnerabilidad en Bogotá, e impulsaremos la prevención de violencias basadas en género mediante formación e investigación. Desde 
+                el enfoque de ciencia e innovación, desarrollaremos soluciones tecnológicas a problemáticas que afectan a las mujeres, integrando la ingeniería con una perspectiva de 
+                género transformadora.
               </p>
             </div>
           </Col>

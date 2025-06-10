@@ -271,5 +271,11 @@
     background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
     border: #00000000;
     border-radius: 2rem;
+    transition: all 0.3s ease; 
 }
 
+.home .suscripcion button:hover {
+    transform: translateY(-2px); 
+    background: linear-gradient(90deg, #B41EB7 0%, #503589 100%);
+    box-shadow: 0 4px 8px #ED7EFF;
+}
