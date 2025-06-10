@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.home {
+    font-family: 'Inter', sans-serif;
+}
+
+.home .start {
+    background: linear-gradient(90deg, #1C0623 0%, #40204B 50%, #503589 100%);
+    text-align: start;
+    padding: 7.5% 5%;
+}
+
+.home .start .title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 0;
+    margin-top: 5%;
+}
+
+.home .start .color {
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.home .start .desc {
+    color: #fff;
+    font-weight: 200;
+}
+
+.home .start .button {
+    color: #ED7EFF;
+    text-decoration: none;
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    padding: 0% 5%;
+    margin: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.home .start .button:active,
+.home .start .button:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: 0% 5%;
+    margin: 0.5rem 1rem;
+    transform: translateY(-3px);
+}
+
+.home .start .button::after {
+    transition: width 0.3s ease;
+}
+
+.home .start .image {
+    background: linear-gradient(90deg, #503589 0%, #B41EB7 100%);
+    border-radius: 1rem; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 1rem;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0 auto;
+    text-align: center;
+    max-width: 90%;
+    height: auto;
+}
+
+.home .start .image img {
+    display: block; 
+    max-width: 75%; 
+    height: auto;
+}
+
+@media (max-width: 768px ){
+    .home .start .image {
+        max-width: 90%; 
+        height: 25%;
+    }
+    .home .start .image img {
+        display: block;
+        width: 15%; 
+        max-height: 80%; 
+        margin: auto; 
+    }
+}
+
+.home .projects {
+    background: #F8F6FB;
+    padding: 7.5% 5%;
+    align-self: center;
+    align-items: center;
+}
+
+.home .projects .row {
+    gap: 2rem;
+    height: auto;
+}
+
+.home .projects h2 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-shadow: 0 0 8px #00000036;
+}
+
+.home .project-item {
+    align-items: start;
+    text-align: start;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+}
+
+.home .project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home .project-item .etiquetas {
+    margin: 1rem 0rem 0.5rem 0rem;
+}
+
+.home .project-item .state ,
+.home .project-item .tag {
+    color: #fff;
+    border-radius: 1rem;
+    padding: 0% 2.5%;
+    transition: all 0.3s ease;
+    line-height: 150%;
+    display: inline-block;
+    margin: 0rem 0.5rem 0.5rem 0rem;
+    box-shadow: 0 0 8px #ED7EFF;
+}
+
+.home .project-item .state {
+    background: #503589;
+}
+
+.home .project-item .tag {
+    background: #B41EB7;
+}
+
+.home .project-item h3 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-shadow: 0 0 8px #0000006c;
+}
+
+.home .project-item .desc {
+    color: #000;
+    font-weight: 300;
+}
+
+.home .projects hr,
+.home .mision-vision hr {
+    opacity: 0%;
+    margin: 2.5%;
+}
+
+.home .project-item .mas {
+    background: linear-gradient(90deg, #503589 0%, #B41EB7 100%);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5% 5%;
+    transition: all 0.3s ease; 
+    line-height: 150%;
+    display: inline-block;
+    margin: 0rem 0.5rem 0.5rem 0rem;
+}
+
+.home .project-item .mas:hover {
+    transform: translateY(-2px); 
+    background: linear-gradient(90deg, #B41EB7 0%, #503589 100%);
+    box-shadow: 0 4px 8px #ED7EFF;
+}
+
+.home .mision-vision {
+    background: linear-gradient(90deg, #1C0623 0%, #40204B 50%, #503589 100%);
+    color: #fff;
+    padding: 7.5% 5%;
+    text-align: center; /* Centra el texto del título y descripción */
+}
+
+.home .mision-vision .descripcion {
+    padding: 0% 15%;
+    margin-bottom: 2rem; /* Espaciado entre la descripción y las tarjetas */
+    font-size: 1.2rem;
+}
+
+.home .mision-vision .row {
+    gap: 2rem; 
+    height: auto;
+    padding: 2rem 1rem;
+}
+
+.home .card-content {
+    background-color: #fff;
+    padding: 7.5%;
+    border-radius: 2.5rem;
+    box-shadow: 0 0 8px #ee7effbd;
+}
+
+.home .card-content h3 {
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-shadow: 0 0 8px #0000006c;
+    margin-bottom: 1rem;
+    color: #222; 
+}
+
+.home .card-content .desc {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5; 
+}
+
+.home .card-content i {
+    color: #fff;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-radius: 100%;
+    box-shadow: 0 0 8px #B41EB7;
+}
+
+.home .suscripcion {
+    background: #F8F6FB;
+    padding: 7.5% 5%;
+}
+
+.home .suscripcion h2 {
+    font-weight: bold;
+    font-size: 2.25rem;
+    text-shadow: 0 0 8px #00000036;
+    margin-bottom: 1rem;
+    color: #222; 
+}
+
+.home .suscripcion form {
+    margin: 2rem 0 2rem 0;
+}
+
+.home .suscripcion input {
+    border: 1px solid #ED7EFF;
+    padding: 1rem;
+    width: 50%;
+    border-radius: 2rem;
+    margin-right: 1rem;
+}
+
+.home .suscripcion .mensaje {
+    font-size: 0.75rem;
+    color: #1C0623;
+}
+
+.home .suscripcion button {
+    color: #fff;
+    padding: 1rem;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    border: #00000000;
+    border-radius: 2rem;
+    transition: all 0.3s ease; 
+}
+
+.home .suscripcion button:hover {
+    transform: translateY(-2px); 
+    background: linear-gradient(90deg, #B41EB7 0%, #503589 100%);
+    box-shadow: 0 4px 8px #ED7EFF;
+}
