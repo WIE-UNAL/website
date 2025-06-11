@@ -27,7 +27,7 @@ const NavigationBar = () => {
                     <img src={logo} alt="Logo de WIE UNAL." className="logo-image"/>
                     <div className="brand-text">
                         <span className="logo-text">WIE UNAL</span>
-                        <p className="logo-text">Women in Engineering</p>
+                        <p className="logo-text">Mujeres en Ingeniería</p>
                     </div>
                 </Navbar.Brand>
 

@@ -1,0 +1,109 @@
+.error .no-projects {
+    font-weight: 300;
+}
+
+.error .loading {
+    width: 100px;  
+    height: auto;
+    display: block; 
+    margin: 0 auto;
+}
+
+.header {
+    background: linear-gradient(90deg, #1C0623 0%, #40204B 50%, #503589 100%);
+    padding: 5rem 2rem;
+}
+
+.header .text {
+    color: #fff;
+    text-align: left;
+}
+
+.header img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header .text .etiquetas {
+    margin: 1rem 0rem 0.5rem 0rem;
+}
+
+.header .text .state ,
+.header .text .tag {
+    color: #fff;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    line-height: 150%;
+    display: inline-block;
+    margin: 0rem 0.5rem 0.5rem 0rem;
+}
+
+.header .text .state {
+    background: #503589;
+}
+
+.header .text .tag {
+    background: #B41EB7;
+}
+
+.header h2 {
+    font-size: 3rem;
+    text-shadow: 0 0 8px #ffffff36;
+    font-weight: bold;
+}
+
+.header .desc {
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+
+.header hr {
+    opacity: 0;
+}
+
+.header .text a {
+    color: #ED7EFF;
+    text-decoration: none;
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    padding: 0% 5%;
+    margin: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.header .text a:active,
+.header .text a:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #ED7EFF  0%, #B41EB7 100%);
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: 0% 5%;
+    margin: 0.5rem 1rem;
+    transform: translateY(-3px);
+}
+
+.header .text a::after {
+    transition: width 0.3s ease;
+}
+
+.proyecto .information {
+    padding: 5rem 2rem;
+    text-align: left;
+}
+
+.proyecto .information .row {
+    height: auto;
+}
+
+.proyecto .information .text {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 2rem;
+    margin: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.034);
+}

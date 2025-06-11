@@ -7,7 +7,16 @@
 .home .start {
     background: linear-gradient(90deg, #1C0623 0%, #40204B 50%, #503589 100%);
     text-align: start;
-    padding: 7.5% 5%;
+    padding: 7.5%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.home .start .text {
+    margin-right: 2rem;
 }
 
 .home .start .title {
@@ -66,10 +75,9 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    margin: 0 auto;
     text-align: center;
-    max-width: 90%;
     height: auto;
+    margin-left: 2rem;
 }
 
 .home .start .image img {
@@ -160,6 +168,7 @@
     font-weight: 300;
 }
 
+.home .start hr,
 .home .projects hr,
 .home .mision-vision hr {
     opacity: 0%;
@@ -278,4 +287,11 @@
     transform: translateY(-2px); 
     background: linear-gradient(90deg, #B41EB7 0%, #503589 100%);
     box-shadow: 0 4px 8px #ED7EFF;
+}
+
+.home .loading {
+    width: 100px; 
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
 }
