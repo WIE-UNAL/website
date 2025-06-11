@@ -64,7 +64,7 @@
     opacity: 0;
 }
 
-.header .text a {
+.header .text .link {
     color: #ED7EFF;
     text-decoration: none;
     border: 1px solid #ED7EFF;
@@ -76,8 +76,8 @@
     display: inline-block;
 }
 
-.header .text a:active,
-.header .text a:hover {
+.header .text .link:active,
+.header .text .link:hover {
     color: #fff !important;
     background: linear-gradient(90deg, #ED7EFF  0%, #B41EB7 100%);
     text-decoration: none;
@@ -87,9 +87,23 @@
     transform: translateY(-3px);
 }
 
-.header .text a::after {
+.header .text .link::after {
     transition: width 0.3s ease;
 }
+
+.proyecto .header .back {
+    color: #fff;
+    border: 0;
+    margin: 0rem;
+    padding: 0rem;
+    text-decoration: none;
+}
+
+.proyecto .header .back:hover,
+.proyecto .header .back:active {
+    color: #ED7EFF;
+}
+
 
 .proyecto .information {
     padding: 5rem 2rem;

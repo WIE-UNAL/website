@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import './Proyecto.css';
 
@@ -41,6 +41,7 @@ const Proyecto = () => {
             <Container fluid className="header">
                 <Row className="start-block justify-content-center align-items-center">
                     <Col xs={10} md={6} className="text">
+                        <Link to="/proyectos" className="back"><i class="fa-solid fa-angles-left"></i> Regresar a Proyectos</Link>
                         <div className="etiquetas">
                             <span className="state">{proyecto.estado_nombre}</span>
                             {proyecto.tags?.map((t) => (
@@ -49,7 +50,7 @@ const Proyecto = () => {
                         </div>
                         <h2>{proyecto.nombre}</h2>
                         <p className="desc">{proyecto.descripcion_c}</p>
-                        <a href="https://forms.gle/ghC6TBedHnNLfMDZ9" target="_blank" rel="noopener noreferrer">
+                        <a href="https://forms.gle/ghC6TBedHnNLfMDZ9" target="_blank" rel="noopener noreferrer" className="link">
                             Únete a Nuestro Equipo
                         </a>
                         <hr />
@@ -63,7 +64,7 @@ const Proyecto = () => {
 
             <Container fluid className="information">
                 <Row className="d-flex justify-content-center align-items-stretch">
-                    <Col xs={12} md={8} className="start-block">
+                    <Col sm={12} md={7} lg={8} xl={8} className="start-block">
                     <Row className="descripcion mb-3">
                         <h3>Descripción</h3>
                         <p className="desc">{proyecto.descripcion}</p>
@@ -78,7 +79,7 @@ const Proyecto = () => {
                     </Row>
                     </Col>
 
-                    <Col xs={12} md={3} className="start-block">
+                    <Col sm={12} md={5} lg={4} xl={3} className="start-block">
                     <Row className="avance mb-3">
                         <h3>Avance</h3>
                         <div className="progress-container">
