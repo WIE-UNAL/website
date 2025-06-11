@@ -11,8 +11,7 @@ import loading from "../resources/loading.gif";
 import { getProyectos, buscarProyectos } from "../ctrl/ProyectosCtrl.js";
 import { getEstados } from "../ctrl/EstadosCtrl.js";
 import { getTags } from "../ctrl/TagsCtrl.js";
-
-import { procesarProyectos } from "../util/Proyectos.js";
+import { FotoProyecto } from "../util/Foto.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,9 +27,7 @@ const Projects = () => {
     useEffect(() => {
         const fetchEnriquecido = async () => {
         try {
-            const proyectosRaw = await getProyectos();
-            const proyectosConDatos = await procesarProyectos(proyectosRaw)
-            setProyectos(proyectosConDatos);
+            setProyectos(await getProyectos());
 
             const estadosData = await getEstados();
             const tagsData = await getTags();
@@ -51,8 +48,7 @@ const Projects = () => {
                 estadosSeleccionados,
                 tagsSeleccionados
             );
-            const proyectosConDatos = await procesarProyectos(proyectosRaw); // Enriquecer datos
-            setProyectos(proyectosConDatos);
+            setProyectos(proyectosRaw);
         } catch (error) {
             setError("Hubo un error al realizar la búsqueda.");
         }
@@ -119,13 +115,9 @@ const Projects = () => {
                         proyectos.map((p, i) => {
                             return (
                                 <Col xs={10} md={5} xl={3} key={i} className="project-item">
-                                    <img
-                                    src={p.foto}
-                                    alt={`Imagen del proyecto ${p.nombre}`}
-                                    className="img"
-                                    />
+                                    <FotoProyecto proyecto={p} className="img" />
                                     <div className="etiquetas">
-                                    <span className="state">{p.estado}</span>
+                                    <span className="state">{p.estado_nombre}</span>
                                     {p.tags?.map((t) => (
                                         <span className="tag">{t}</span>
                                     ))}

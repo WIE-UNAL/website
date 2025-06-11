@@ -93,17 +93,69 @@
 
 .proyecto .information {
     padding: 5rem 2rem;
-    text-align: left;
+    text-align: justify;
+    color: #222;
 }
 
 .proyecto .information .row {
     height: auto;
 }
 
-.proyecto .information .text {
+.proyecto .information .descripcion,
+.proyecto .information .impacto,
+.proyecto .information .miembros,
+.proyecto .information .avance,
+.proyecto .information .stats,
+.proyecto .information .unete {
     background: #fff;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 2rem;
     margin: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.034);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.proyecto .information .stats {
+    background: linear-gradient(90deg, #503589  0%, #40204B 100%);
+    color: #fff;
+}
+
+.proyecto .information h3 {
+    font-weight: bold;
+    text-shadow: 0 0 8px #1c062356;
+    color: #1C0623;
+    letter-spacing: 0.25rem;
+}
+
+.proyecto .information .stats h3 {
+    color: #fff;
+    text-shadow: 0 0 8px #ffffff79;
+}
+
+.proyecto .information .avance .progress-container {
+  width: 100%;
+  background-color: #F8F6FB; 
+  border-radius: 0.5rem;
+  overflow: hidden; 
+  position: relative; 
+  height: 1.5rem;
+  margin: 0.5rem 0 0 0; 
+  padding: 0;
+}
+
+.proyecto .information .avance .progress-bar {
+  height: 100%; 
+  background: linear-gradient(90deg, #ED7EFF  0%, #B41EB7 50%, #503589 100%);
+  transition: width 0.3s ease; 
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  color: #fff;
+  font-weight: 500; 
+  font-size: 0.85rem;
+}
+
+.proyecto .information .avance .progress-text {
+  position: absolute; 
+  width: 100%; 
 }

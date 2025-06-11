@@ -11,8 +11,7 @@ import loading from "../resources/loading.gif"
 
 import { getProyectosDestacados } from "../ctrl/ProyectosCtrl.js";
 import { addCorreo } from "../ctrl/CorreoSuscripcionCtrl.js";
-
-import { procesarProyectos } from "../util/Proyectos.js";
+import { FotoProyecto } from "../util/Foto.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,9 +22,7 @@ const Home = () => {
   useEffect(() => {
     const fetchEnriquecido = async () => {
       try {
-        const proyectosRaw = await getProyectosDestacados();
-        const proyectosConDatos = await procesarProyectos(proyectosRaw)
-        setProyectos(proyectosConDatos);
+        setProyectos(await getProyectosDestacados());
       } catch (err) {
         console.error("Error al cargar y enriquecer proyectos:", err);
         setError("No se pudieron cargar los proyectos destacados.");
@@ -167,13 +164,9 @@ const Home = () => {
             proyectos.map((p, i) => {
               return (
                 <Col xs={8} md={5} xl={3} key={i} className="project-item">
-                  <img
-                    src={p.foto}
-                    alt={`Imagen del proyecto ${p.nombre}`}
-                    className="img"
-                  />
+                  <FotoProyecto proyecto={p} className="img" />
                   <div className="etiquetas">
-                    <span className="state">{p.estado}</span>
+                    <span className="state">{p.estado_nombre}</span>
                     {p.tags?.map((t) => (
                       <span className="tag">{t}</span>
                     ))}
