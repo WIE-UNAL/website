@@ -52,11 +52,11 @@ const Footer = () => {
                             <img src={logo} alt="Logo de WIE UNAL." className="logo-image" />
                             <div className="brand-text">
                                 <span className="logo-text">WIE UNAL</span>
-                                <p className="logo-text">Women in Engineering</p>
+                                <p className="logo-text">Mujeres en Ingeniería</p>
                             </div>
                         </div>
                         <p className="footer-desc">
-                            Empowering women in engineering through innovation, collaboration, and community impact.
+                            Potenciar el papel de la mujer en la ingeniería mediante la innovación, la colaboración y el impacto en la comunidad.
                         </p>
                         <hr />
                         <h3 className="footer-title">Redes Sociales</h3>

@@ -15,3 +15,18 @@ export const getNombreById_Tag = async (Id) => {
 
     return data[0].nombre;
 };
+
+export const getTags = async () => {
+    const { data, error } = await supabase
+        .from("tags")
+        .select("*");
+
+    if (error) {
+        console.error("[Supabase Error] message:", error.message);
+        console.error("[Supabase Error] details:", error.details);
+        console.error("[Supabase Error] hint:", error.hint);
+        throw error;
+    }
+
+    return data;
+};

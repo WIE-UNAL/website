@@ -7,13 +7,11 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import img from "../resources/home/home.png";
+import loading from "../resources/loading.gif"
 
 import { getProyectosDestacados } from "../ctrl/ProyectosCtrl.js";
-import { getNombreById_Estado } from "../ctrl/EstadosCtrl.js";
-import { getTagsByIdEvent } from "../ctrl/Proyectos_TagsCtrl.js";
-import { getNombreById_Tag } from "../ctrl/TagsCtrl.js";
-import { getFotoProyecto } from "../ctrl/StorageCtrl.js";
 import { addCorreo } from "../ctrl/CorreoSuscripcionCtrl.js";
+import { FotoProyecto } from "../util/Foto.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,32 +22,7 @@ const Home = () => {
   useEffect(() => {
     const fetchEnriquecido = async () => {
       try {
-        const proyectosRaw = await getProyectosDestacados();
-        
-        const proyectosConDatos = await Promise.all(
-          proyectosRaw.map(async proyecto => {
-            const nombreEstado = await getNombreById_Estado(proyecto.estado);
-
-            const tagRelations = await getTagsByIdEvent(proyecto.id_proyecto);
-            const tags = await Promise.all(
-              tagRelations.map(async rel => {
-                const nombreTag = await getNombreById_Tag(rel.id_tag);
-                return nombreTag;
-              })
-            );
-
-            const fotoURL = await getFotoProyecto(proyecto.id_proyecto);
-
-            return {
-              ...proyecto,
-              estado: nombreEstado,
-              tags,
-              foto: fotoURL, 
-            };
-          })
-        );
-
-        setProyectos(proyectosConDatos);
+        setProyectos(await getProyectosDestacados());
       } catch (err) {
         console.error("Error al cargar y enriquecer proyectos:", err);
         setError("No se pudieron cargar los proyectos destacados.");
@@ -78,7 +51,6 @@ const Home = () => {
     }
   };
 
-  
   useEffect(() => {
     let ctx = gsap.context(() => {
       gsap.from(".start-block", {
@@ -161,8 +133,8 @@ const Home = () => {
   return (
     <div className="home">
       <Container fluid className="start">
-        <Row className="start-block">
-          <Col md={8} className="text">
+        <Row className="start-block justify-content-center align-items-center">
+          <Col xs={10} md={6} className="text">
             <p className="title">Mujeres en la</p>
             <p className="color">Ingeniería</p>
             <p className="desc">
@@ -172,7 +144,7 @@ const Home = () => {
             <Link to="/miembros" className="button">Conoce a Nuestros Miembros</Link>
             <hr />
           </Col>
-          <Col md={4} className="image">
+          <Col xs={12} md={4} className="image">
             <img src={img} alt="Logo de WIE UNAL." className="logo-image" />
           </Col>
         </Row>
@@ -191,27 +163,28 @@ const Home = () => {
           {proyectos.length > 0 ? (
             proyectos.map((p, i) => {
               return (
-                <Col xs={10} md={3} key={i} className="project-item">
-                  <img
-                    src={p.foto} // Usar el campo 'foto'
-                    alt={`Imagen del proyecto ${p.nombre}`}
-                    className="img"
-                  />
+                <Col xs={8} md={5} xl={3} key={i} className="project-item">
+                  <FotoProyecto proyecto={p} className="img" />
                   <div className="etiquetas">
-                    <span className="state">{p.estado}</span>
+                    <span className="state">{p.estado_nombre}</span>
                     {p.tags?.map((t) => (
                       <span className="tag">{t}</span>
                     ))}
                   </div>
                   <h3>{p.nombre}</h3>
                   <p className="desc">{p.descripcion_c}</p>
-                  <Link to="/proyectos" className="mas">Ver Más...</Link>
+                  <Link to={`/proyecto/${p.id_proyecto}`} className="mas">
+                    Ver Más...
+                  </Link>
                 </Col>
               );
             })
           ) : !error ? (
-            <p>No hay proyectos destacados disponibles.</p>
-          ) : null}
+            <div className="error">
+              <img src={loading} alt="Cargando..." className="loading" /> 
+              <p className="no-projects">No hay proyectos disponibles en este momento.</p> 
+            </div>
+          ) : ( null )}
         </Row>
       </Container>
 
