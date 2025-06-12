@@ -139,20 +139,25 @@ const Projects = () => {
                 </Row>
             </Container>
 
-            <div className="idea">
-                <h2>¿Tienes una Idea para un Proyecto?</h2>
-                <p className="desc">
-                    Únete a nuestra comunidad y da vida a tus ideas innovadoras. Siempre 
+            <Container fluid className="idea d-flex justify-content-center align-items-center">
+                <Col xs={10} md={8} lg={6} className="text-center">
+                    <h2>¿Tienes una Idea para un Proyecto?</h2>
+                    <p className="desc">
+                    Únete a nuestra comunidad y da vida a tus ideas innovadoras. Siempre
                     estamos buscando ingenieras apasionadas que lideren nuevas iniciativas.
-                </p>
-                <a href="mailto:wie_fibog@unal.edu.co?subject=Nueva Propuesta para Proyecto WIE&body=Hola equipo WIE,%0D%0A%0D%0AQuisiera compartir con ustedes esta idea que tengo para un proyecto. %0D%0AMi propuesta se enfoca en [Explica tu idea aquí].%0D%0A%0D%0AEstoy emocionado(a) por discutir los detalles y colaborar con ustedes.%0D%0A%0D%0A¡Espero su respuesta!%0D%0A%0D%0AAtentamente,%0D%0A[Tu Nombre Aquí]" target="_blank" rel="noopener noreferrer">
+                    </p>
+                    <a
+                    href="mailto:wie_fibog@unal.edu.co?subject=Nueva Propuesta para Proyecto WIE&body=Hola equipo WIE,%0D%0A%0D%0AQuisiera compartir con ustedes esta idea que tengo para un proyecto. %0D%0AMi propuesta se enfoca en [Explica tu idea aquí].%0D%0A%0D%0AEstoy emocionado(a) por discutir los detalles y colaborar con ustedes.%0D%0A%0D%0A¡Espero su respuesta!%0D%0A%0D%0AAtentamente,%0D%0A[Tu Nombre Aquí]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
                     Envia Tu Propuesta
-                </a>
-                <a href="https://forms.gle/ghC6TBedHnNLfMDZ9" target="_blank" rel="noopener noreferrer">
+                    </a>
+                    <a href="https://forms.gle/ghC6TBedHnNLfMDZ9" target="_blank" rel="noopener noreferrer">
                     Únete a Nuestro Equipo
-                </a>
-
-            </div>
+                    </a>
+                </Col>
+            </Container>
         </div>
     );
 };
