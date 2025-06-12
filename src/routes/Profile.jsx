@@ -5,6 +5,8 @@ import './LogIn.css';
 import { getUsuarioByID } from "../ctrl/UsuarioCtrl";
 import { estaAutenticado, getUsuarioStorage } from "../util/Auth";
 
+import loading from "../resources/loading.gif";
+
 export const Perfil = () => {
     const [usuario, setUsuario] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -38,17 +40,27 @@ export const Perfil = () => {
     }, [navigate]);
 
     if (isLoading) {
-        return <div>Cargando...</div>;
+        return (
+            <div className="error">
+                <img src={loading} alt="Cargando..." className="loading" /> 
+                <p className="no-projects">Cargando el Proyecto...</p> 
+            </div>
+        );
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return (
+            <div className="error">
+                <img src={loading} alt="Cargando..." className="loading" /> 
+                <p className="no-projects">Ocurrió un Error...</p> 
+            </div>
+        );
     }
 
     return (
         <div className="profile">
             <Container className="menu">
-                {usuario && <h2>{usuario.nombre}</h2>}
+                <h2>{usuario.nombre} {usuario.apellido}</h2>
             </Container>
         </div>
     );

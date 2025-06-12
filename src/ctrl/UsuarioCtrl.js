@@ -9,7 +9,7 @@ export const UsuarioNuevo = async (correo) => {
         console.error("[Supabase Error] hint:", error.hint);
         throw error;
     }
-    console.log(data[0])
+
     return data[0];
 };
 
@@ -43,6 +43,5 @@ export const getUsuarioByID = async (Id) => {
         throw error;
     }
 
-    console.log(data[0])
     return data[0];
 };
