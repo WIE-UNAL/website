@@ -1,0 +1,139 @@
+
+.alert-popup {
+    padding: 2rem;
+    border-radius: 15px !important;
+    background: #eeeeee !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    font-family: 'tu-fuente', sans-serif !important;
+}
+
+.alert-title {
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+    color: #1C0623 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Mensaje del alert */
+.alert-message {
+    font-size: 1.1rem !important;
+    color: #222 !important;
+    line-height: 1.5 !important;
+    margin: 1rem 0 !important;
+}
+
+/* Botón base */
+.alert-button {
+    padding: 0.8rem 2rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+/* Botón de éxito */
+.alert-button-success {
+    background: linear-gradient(135deg, #B41EB7, #ED7EFF) !important;
+    color: white !important;
+}
+
+.alert-button-success:hover {
+    background: linear-gradient(135deg, #B41EB7, #ED7EFF) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Botón de error */
+.alert-button-error {
+    background: linear-gradient(135deg, #1C0623, #40204B) !important;
+    color: white !important;
+}
+
+.alert-button-error:hover {
+    background: linear-gradient(135deg, #1C0623, #40204B) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Botón de advertencia */
+.alert-button-warning {
+    background: linear-gradient(135deg, #ED7EFF, #B41EB7) !important;
+    color: #000 !important;
+}
+
+.alert-button-warning:hover {
+    background: linear-gradient(135deg, #ED7EFF, #B41EB7) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Icono del alert */
+/* Estilos para el icono */
+.alert-icon {
+    border: none !important;
+    transform: scale(1.2) !important;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -20%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0, -20%, 0);
+    }
+}
+
+/* Estilos específicos para cada tipo de icono */
+.swal2-icon.swal2-success {
+    border-color: #ED7EFF !important;
+}
+
+.swal2-icon.swal2-success [class^='swal2-success-line'] {
+    background-color: #ED7EFF !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border-color: #ED7EFF !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #40204B !important;
+}
+
+.swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+    background-color: #40204B !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #B41EB7 !important;
+    color: #B41EB7 !important;
+}
+
+/* Overlay personalizado */
+.swal2-container {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+/* Animación de aparición */
+.animate__fadeInDown {
+    animation: fadeInDown 0.5s ease-out !important;
+}
+
+/* Animación de desaparición */
+.animate__fadeOutUp {
+    animation: fadeOutUp 0.5s ease-in !important;
+}

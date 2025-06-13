@@ -1,0 +1,152 @@
+.login .header {
+    background: linear-gradient(90deg, #503589 0%, #1C0623 100%);
+    align-content: center;
+    text-align: left;
+    padding: 5rem;
+}
+
+.login .header i {
+    color: #fff;
+    padding: 1rem;
+    background: linear-gradient(90deg, #ED7EFF 0%, #B41EB7 100%);
+    border-radius: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 1.5rem;
+}
+
+.login .header .title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 0;
+    margin-top: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.login .header .color {
+    background: linear-gradient(90deg, #ED7EFF 0%, #B41EB7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.login .header .desc {
+    color: #fff;
+    font-weight: 200;
+    font-size: 1.5rem;
+}
+
+.auth-container {
+    background-color: #F8F6FB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    padding: 2rem; 
+}
+
+.auth-container .auth,
+.auth-container .form {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.auth-container h2 {
+    font-weight: bold;
+    color: #1C0623;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.auth-container h3 {
+    font-weight: 300;
+    color: #1C0623;
+}
+
+.auth-container .boton {
+    color: #B41EB7;
+    margin: 0.5rem;
+    width: 75%;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid #ED7EFF;
+}
+
+.auth-container .boton:active,
+.auth-container .boton:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    border-radius: 1rem;
+    transform: translateY(-3px);
+}
+
+.auth-container .boton::after {
+    transition: width 0.3s ease;
+}
+
+.login .form {
+    text-align: left;
+}
+
+.login .form h3 {
+    text-align: center;
+}
+
+.login .form .label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.login .form input {
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    outline:none;
+}
+
+.login .form input:focus,
+.login .form input:focus-visible {
+    border: 1px solid #B41EB7 !important;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    color: #1C0623;
+}
+
+.login .form button {
+    margin: 1rem 0rem 1rem 0rem;
+    width: 100%;
+}
+
+.login .form .carrera-select {
+    margin-top: 1rem;
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    outline:none;
+    color: #1C0623;
+}
+
+.login .form .subtitle {
+    color: #222;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.login .form .subtitle a {
+  color: #B41EB7;
+  text-decoration: none;
+}
+
+.login .form .subtitle a:hover {
+  text-decoration: underline;
+}
