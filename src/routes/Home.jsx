@@ -138,7 +138,12 @@ const Home = () => {
             <p className="title">Mujeres en la</p>
             <p className="color">Ingeniería</p>
             <p className="desc">
-              Únete a la principal comunidad de mujeres ingenieras de la UNAL. Conéctate, innova y da forma al futuro de la tecnología.
+              Desde nuestro grupo queremos que todas las personas, de todas las carreras y aún más allá impulsen y promuevan el rol de la mujer en el STEAM 
+              (ciencia, tecnología, ingeniería, artes y matemáticas) teniendo un enfoque en la ingeniería, Esto buscando la equidad de genero.
+            </p>
+            <p className="desc">
+              Esto mediante proyectos e iniciativas que faciliten la incursión de niñas, estudiantes de pregrado, posgrado y profesionales. Proyectos e 
+              iniciativas que creen comunidad, ¡donde todas y todos podamos crecer juntos en nuestra vida universitaria y profesional!
             </p>
             <Link to="/proyectos" className="button">Nuestros Proyectos</Link>
             <Link to="/miembros" className="button">Conoce a Nuestros Miembros</Link>
