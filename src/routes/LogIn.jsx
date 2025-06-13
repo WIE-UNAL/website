@@ -109,7 +109,7 @@ export const LogIn = () => {
             });
 
             // Animación para los campos del formulario
-            gsap.from(".form input, .form select, .form button", {
+            gsap.from(".form input, .form select", {
                 opacity: 0,
                 y: 30,
                 duration: 0.8,
