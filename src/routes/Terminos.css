@@ -1,0 +1,32 @@
+.terms {
+    padding: 3rem;
+}
+
+.terms section {
+    margin: 2rem;
+    text-align: left;
+    color: #222;
+    font-weight: 400;
+}
+
+.terms h2 {
+    font-weight: bold;
+    color: #1C0623;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.terms strong {
+    color: #440d55;
+    text-shadow: 0 4px 8px #440d5528;
+}
+
+.terms a {
+    color: #B41EB7;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    text-shadow: 0 4px 8px #B41EB728;
+}

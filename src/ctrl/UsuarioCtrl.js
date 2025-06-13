@@ -23,7 +23,8 @@ export const insertarUsuario = async (usuario) => {
         correo: usuario.correo,
         telefono: usuario.telefono,
         cumple: usuario.cumple, 
-        admin: usuario.admin || false
+        id_carrera: usuario.id_carrera,
+        id_cargo: 5
       },
     ]).select();
   if (error) {
@@ -34,7 +35,10 @@ export const insertarUsuario = async (usuario) => {
 };
 
 export const getUsuarioByID = async (Id) => {
-    const { data, error } = await supabase.from("usuario").select("*").eq("id_usuario", Id);
+    const { data, error } = await supabase
+      .from("vw_usuarios_completos")
+      .select("*")
+      .eq("id_usuario", Id);
 
     if (error) {
         console.error("[Supabase Error] message:", error.message);

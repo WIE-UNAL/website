@@ -107,9 +107,46 @@
     width: 100%;
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
+    outline:none;
+}
+
+.login .form input:focus,
+.login .form input:focus-visible {
+    border: 1px solid #B41EB7 !important;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    color: #1C0623;
 }
 
 .login .form button {
     margin: 1rem 0rem 1rem 0rem;
     width: 100%;
+}
+
+.login .form .carrera-select {
+    margin-top: 1rem;
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    outline:none;
+    color: #1C0623;
+}
+
+.login .form .subtitle {
+    color: #222;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.login .form .subtitle a {
+  color: #B41EB7;
+  text-decoration: none;
+}
+
+.login .form .subtitle a:hover {
+  text-decoration: underline;
 }

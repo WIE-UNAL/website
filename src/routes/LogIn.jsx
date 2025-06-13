@@ -1,21 +1,26 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; 
-
-import './LogIn.css';
-
+import { useNavigate } from "react-router-dom";
+import "./LogIn.css";
 import { signInWithGoogle } from "../util/firebase";
-import { UsuarioNuevo, insertarUsuario } from "../ctrl/UsuarioCtrl";
 import { setUsuarioStorage } from "../util/Auth";
+import { mostrarAlert } from "../util/Alert";
+import { UsuarioNuevo, insertarUsuario } from "../ctrl/UsuarioCtrl";
+import { getCarreras } from "../ctrl/CarrerasCtrl";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const LogIn = () => {
     const [user, setUser] = useState(null);
-    const [form, setForm] = useState(false); // Muestra u oculta el formulario
-    const [nombres, setNombres] = useState(""); // Estado para nombres
-    const [apellidos, setApellidos] = useState(""); // Estado para apellidos
-    const [telefono, setTelefono] = useState(""); // Estado para teléfono
-    const [cumple, setCumple] = useState(""); // Estado para cumpleaños
-
+    const [form, setForm] = useState(false);
+    const [nombres, setNombres] = useState("");
+    const [apellidos, setApellidos] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [cumple, setCumple] = useState("");
+    const [carreras, setCarreras] = useState([]);
+    const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,16 +29,19 @@ export const LogIn = () => {
                 if (user) {
                     const esNuevo = await UsuarioNuevo(user.email);
                     if (esNuevo === undefined) {
+                        setCarreras(await getCarreras());
                         setForm(true);
                     } else {
                         setUsuarioStorage(esNuevo.id_usuario);
                         navigate("/perfil");
+                        window.location.reload();
                     }
                 }
             } catch (error) {
                 console.error("Error al verificar el estado del usuario:", error);
             }
         };
+
         verificarUsuario();
     }, [user, navigate]);
 
@@ -47,7 +55,7 @@ export const LogIn = () => {
     };
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault(); // Previene la recarga de la página
+        e.preventDefault();
         try {
             const newUser = {
                 nombre: nombres,
@@ -55,16 +63,63 @@ export const LogIn = () => {
                 correo: user.email,
                 telefono: telefono,
                 cumple: cumple,
+                id_carrera: carreraSeleccionada
             };
-            const id = await insertarUsuario(newUser);
+            const data = await insertarUsuario(newUser);
+            const usuarioInsertado = data[0];
+            await mostrarAlert("success", "¡Registro exitoso! Bienvenido a WIE UNAL");
             alert("¡Registro exitoso!");
-            setUsuarioStorage(id.id_usuario);
+            setUsuarioStorage(usuarioInsertado.id_usuario);
             navigate("/perfil");
+            window.location.reload();
         } catch (error) {
             console.error("Error al registrar el usuario:", error);
             alert("Hubo un error al registrar el usuario.");
+            mostrarAlert("error", "Hubo un error al registrar el usuario. Por favor vuelve a intentarlo.");
         }
     };
+
+    // GSAP Animations
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            // Animaciones para el encabezado
+            gsap.from(".header", {
+                opacity: 0,
+                y: -50,
+                duration: 1,
+                ease: "power2.out",
+            });
+
+            // Animación para el contenedor de autenticación
+            gsap.from(".auth-container", {
+                opacity: 0,
+                scale: 0.9,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.3,
+            });
+
+            // Animación para el formulario
+            gsap.from(".form", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power2.out",
+                delay: 0.5,
+            });
+
+            // Animación para los campos del formulario
+            gsap.from(".form input, .form select, .form button", {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out",
+                stagger: 0.2,
+            });
+        });
+
+        return () => ctx.revert();
+    }, [form]);
 
     return (
         <div>
@@ -101,7 +156,6 @@ export const LogIn = () => {
                                             onChange={(e) => setNombres(e.target.value)}
                                             required
                                         />
-
                                         <label className="label">Apellidos</label>
                                         <input
                                             type="text"
@@ -110,7 +164,6 @@ export const LogIn = () => {
                                             onChange={(e) => setApellidos(e.target.value)}
                                             required
                                         />
-
                                         <label className="label">Teléfono</label>
                                         <input
                                             type="tel"
@@ -119,7 +172,6 @@ export const LogIn = () => {
                                             onChange={(e) => setTelefono(e.target.value)}
                                             required
                                         />
-
                                         <label className="label">Cumpleaños</label>
                                         <input
                                             type="date"
@@ -128,7 +180,31 @@ export const LogIn = () => {
                                             onChange={(e) => setCumple(e.target.value)}
                                             required
                                         />
-
+                                        <label className="label">Carrera Universitaria</label>
+                                        <p className="subtitle">* Si estudias más de una carrera, elije tu carrera principal.</p>
+                                        <p className="subtitle">** Si no encuentras tu carrera, elije la más similar.</p>
+                                        <select
+                                            className="carrera-select"
+                                            value={carreraSeleccionada}
+                                            onChange={(e) => setCarreraSeleccionada(e.target.value)}
+                                            required
+                                        >
+                                            <option value="">Selecciona una carrera</option>
+                                            {carreras.map((carrera) => (
+                                                <option
+                                                    key={carrera.id_carrera}
+                                                    value={carrera.id_carrera}
+                                                >
+                                                    {carrera.nombre}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <label className="subtitle">
+                                            Al crear tu cuenta, aceptas nuestros {" "}
+                                            <a href="/terminos" target="_blank" rel="noopener noreferrer">
+                                                términos y condiciones
+                                            </a>.
+                                        </label>
                                         <button type="submit" className="boton">
                                             Enviar Información
                                         </button>

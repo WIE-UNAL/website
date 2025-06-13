@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
+
+import { AutenticadoC } from "../util/Auth";
+
 import './Navbar.css';
 
 import gsap from "gsap";
 import logo from"../resources/brand.png"
 
 const NavigationBar = () => {
+
+    const [autenticado, setAutenticado ] = useState(false);
+
+    useEffect(() => {
+            const fetchAutenticado = async () => {
+                setAutenticado(await AutenticadoC())
+            };
+    
+            fetchAutenticado();
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -40,7 +53,13 @@ const NavigationBar = () => {
                         <Nav.Link as={NavLink} to="/" className="nav-link-custom">Inicio</Nav.Link>
                         <Nav.Link as={NavLink} to="/proyectos" className="nav-link-custom">Proyectos</Nav.Link>
                         <Nav.Link as={NavLink} to="/miembros" className="nav-link-custom">Miembros</Nav.Link>
-                        <Nav.Link as={NavLink} to="/log-in" className="nav-link-login">Ingresar</Nav.Link>
+
+                        { !autenticado ? (
+                            <Nav.Link as={NavLink} to="/log-in" className="nav-link-login">Ingresar</Nav.Link>
+                        ) : (
+                            <Nav.Link as={NavLink} to="/perfil" className="nav-link-login">Mi Perfil</Nav.Link>
+                        )}
+                        
 
                         {/* Sección de Redes Sociales */}
                         <div className="social-links">

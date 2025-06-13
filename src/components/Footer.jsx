@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './Footer.css';
@@ -6,9 +6,21 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import logo from "../resources/brand.png";
 
+import { AutenticadoC } from "../util/Auth";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+
+    const [autenticado, setAutenticado ] = useState(false);
+    
+    useEffect(() => {
+            const fetchAutenticado = async () => {
+                setAutenticado(await AutenticadoC())
+            };
+    
+            fetchAutenticado();
+    }, []);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -82,7 +94,12 @@ const Footer = () => {
                             <li><Link to="/">Inicio</Link></li>
                             <li><Link to="/proyectos">Proyectos</Link></li>
                             <li><Link to="/miembros">Miembros</Link></li>
-                            <li><Link to="/log-in">Ingresar / Registrarse</Link></li>
+                            { autenticado === false ? (
+                                <li><Link to="/log-in">Ingresar / Registrarse</Link></li>
+                            ) : (
+                                <li><Link to="/perfil">Mi Perfil</Link></li>
+                            )}
+                            
                         </ul>
                     </Col>
                 </Row>
