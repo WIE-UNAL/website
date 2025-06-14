@@ -8,7 +8,8 @@ import loading from "../resources/loading.gif";
 import { getProyectos, buscarProyectos } from "../ctrl/ProyectosCtrl.js";
 import { getEstados } from "../ctrl/EstadosCtrl.js";
 import { getTags } from "../ctrl/TagsCtrl.js";
-import { FotoProyecto } from "../util/Foto.jsx";
+
+import defaultP from '../resources/default/Proyecto.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -171,7 +172,12 @@ const Projects = () => {
                         proyectos.map((p, i) => {
                             return (
                                 <Col xs={10} md={5} xl={3} key={i} className="project-item">
-                                    <FotoProyecto proyecto={p} className="img" />
+                                    <img
+                                        src={p.foto} 
+                                        alt={`Imagen proyecto ${p.nombre}`} 
+                                        className="img" 
+                                        onError={(e) => { e.target.onerror = null; e.target.src = defaultP; }}
+                                    />
                                     <div className="etiquetas">
                                         <span className="state">{p.estado_nombre}</span>
                                         {p.tags?.map((t) => (

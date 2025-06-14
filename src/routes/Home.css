@@ -267,10 +267,12 @@
     width: 50%;
     border-radius: 2rem;
     margin-right: 1rem;
+    outline:none;
 }
 
-.home .suscripcion .mensaje {
-    font-size: 0.75rem;
+.home .suscripcion input:focus,
+.home .suscripcion input:focus-visible {
+    border: 1px solid #B41EB7;
     color: #1C0623;
 }
 

@@ -68,14 +68,12 @@ export const LogIn = () => {
             const data = await insertarUsuario(newUser);
             const usuarioInsertado = data[0];
             await mostrarAlert("success", "¡Registro exitoso! Bienvenido a WIE UNAL");
-            alert("¡Registro exitoso!");
             setUsuarioStorage(usuarioInsertado.id_usuario);
             navigate("/perfil");
             window.location.reload();
         } catch (error) {
             console.error("Error al registrar el usuario:", error);
-            alert("Hubo un error al registrar el usuario.");
-            mostrarAlert("error", "Hubo un error al registrar el usuario. Por favor vuelve a intentarlo.");
+            await mostrarAlert("error", "Hubo un error al registrar el usuario. Por favor vuelve a intentarlo.");
         }
     };
 

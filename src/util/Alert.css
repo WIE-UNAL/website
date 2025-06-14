@@ -58,7 +58,7 @@
 /* Botón de advertencia */
 .alert-button-warning {
     background: linear-gradient(135deg, #ED7EFF, #B41EB7) !important;
-    color: #000 !important;
+    color: #fff !important;
 }
 
 .alert-button-warning:hover {

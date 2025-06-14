@@ -8,10 +8,11 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import img from "../resources/home/home.png";
 import loading from "../resources/loading.gif"
+import defaultP from '../resources/default/Proyecto.png'
 
 import { getProyectosDestacados } from "../ctrl/ProyectosCtrl.js";
 import { addCorreo } from "../ctrl/CorreoSuscripcionCtrl.js";
-import { FotoProyecto } from "../util/Foto.jsx";
+import { mostrarAlert } from "../util/Alert";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,20 +34,19 @@ const Home = () => {
   }, []);
 
   const [correo, setCorreo] = useState("");
-  const [mensaje, setMensaje] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await addCorreo(correo);
       if (response.exists) {
-        setMensaje("Este correo ya está registrado en nuestra base de datos.");
+        await mostrarAlert("warning", "Este correo ya está registrado en nuestra base de datos.");
       } else {
-        setMensaje("¡Gracias por suscribirte! Te hemos añadido a nuestra comunidad.");
+        await mostrarAlert("success", "¡Gracias por suscribirte! Te hemos añadido a nuestra comunidad.");
       }
       setCorreo(""); 
     } catch (error) {
-      setMensaje("Hubo un error al procesar tu suscripción. Inténtalo más tarde.");
+      await mostrarAlert("error", "Hubo un error al procesar tu suscripción. Inténtalo más tarde.");
       console.error("Error en la suscripción:", error);
     }
   };
@@ -169,7 +169,12 @@ const Home = () => {
             proyectos.map((p, i) => {
               return (
                 <Col xs={8} md={5} xl={3} key={i} className="project-item">
-                  <FotoProyecto proyecto={p} className="img" />
+                  <img
+                    src={p.foto} 
+                    alt={`Imagen proyecto ${p.nombre}`} 
+                    className="img" 
+                    onError={(e) => { e.target.onerror = null; e.target.src = defaultP; }}
+                  />
                   <div className="etiquetas">
                     <span className="state">{p.estado_nombre}</span>
                     {p.tags?.map((t) => (
@@ -242,7 +247,6 @@ const Home = () => {
           />
           <button type="submit">Suscríbete</button>
         </form>
-        {mensaje && <p className="mensaje">{mensaje}</p>}
       </Container>
     </div>
   );
