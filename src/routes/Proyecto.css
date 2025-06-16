@@ -145,18 +145,18 @@
     text-shadow: 0 0 8px #ffffff79;
 }
 
-.proyecto .information .avance .progress-container {
+.proyecto .information .progress-container {
   width: 100%;
-  background-color: #F8F6FB; 
+  background-color: #ffffff21; 
   border-radius: 0.5rem;
   overflow: hidden; 
   position: relative; 
   height: 1.5rem;
-  margin: 0.5rem 0 0 0; 
+  margin: 0; 
   padding: 0;
 }
 
-.proyecto .information .avance .progress-bar {
+.proyecto .information .progress-bar {
   height: 100%; 
   background: linear-gradient(90deg, #ED7EFF  0%, #B41EB7 50%, #503589 100%);
   transition: width 0.3s ease; 
@@ -169,7 +169,7 @@
   font-size: 0.85rem;
 }
 
-.proyecto .information .avance .progress-text {
+.proyecto .information .progress-text {
   position: absolute; 
   width: 100%; 
 }
