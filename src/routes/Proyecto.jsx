@@ -19,7 +19,8 @@ const Proyecto = () => {
     useEffect(() => {
         const fetchProyecto = async () => {
             try {
-                setProyecto(await getProyectoById(id_proyecto));
+                const fetchedProyecto = await getProyectoById(id_proyecto);
+                setProyecto(fetchedProyecto);
             } catch (err) {
                 console.error("Error al cargar el proyecto:", err);
                 setError("Hubo un problema al cargar el proyecto.");
@@ -29,71 +30,34 @@ const Proyecto = () => {
         fetchProyecto();
     }, [id_proyecto]);
 
-    // GSAP Animations
+    // GSAP Animations (igual que el original)
     useEffect(() => {
         let ctx = gsap.context(() => {
-            // Animación para el encabezado
-            gsap.from(".header", {
-                opacity: 0,
-                y: -100,
-                duration: 1,
-                ease: "power2.out",
-            });
-
-            // Animación para las etiquetas
-            gsap.from(".etiquetas span", {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                stagger: 0.2,
-                ease: "power3.out",
-            });
-
-            // Animación para la descripción e información general
-            gsap.from(".text", {
-                opacity: 0,
-                x: -50,
-                duration: 1,
-                ease: "power2.out",
-            });
-
-            // Animación para la imagen del proyecto
+            gsap.from(".header", { opacity: 0, y: -100, duration: 1, ease: "power2.out" });
+            gsap.from(".etiquetas span", { opacity: 0, y: 20, duration: 0.6, stagger: 0.2, ease: "power3.out" });
+            gsap.from(".text", { opacity: 0, x: -50, duration: 1, ease: "power2.out" });
             gsap.from(".image", {
                 opacity: 0,
                 scale: 0.8,
                 duration: 1,
                 ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".image",
-                    start: "top 80%",
-                },
+                scrollTrigger: { trigger: ".image", start: "top 80%" },
             });
-
-            // Animaciones para las secciones principales (descripción, impacto, avance, etc.)
             gsap.from(".information .start-block", {
                 opacity: 0,
                 y: 50,
                 duration: 1,
                 stagger: 0.3,
                 ease: "power2.out",
-                scrollTrigger: {
-                    trigger: ".information",
-                    start: "top 85%",
-                },
+                scrollTrigger: { trigger: ".information", start: "top 85%" },
             });
-
-            // Animación para la barra de progreso
             gsap.from(".progress-bar", {
                 width: 0,
                 duration: 1.5,
                 ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".avance",
-                    start: "top 90%",
-                },
+                scrollTrigger: { trigger: ".avance", start: "top 90%" },
             });
         });
-
         return () => ctx.revert();
     }, []);
 
@@ -156,17 +120,31 @@ const Proyecto = () => {
                     </Col>
                     <Col sm={12} md={5} lg={4} xl={3} className="start-block">
                         <Row className="avance mb-3">
-                            <h3>Avance</h3>
-                            <div className="progress-container">
-                                <div className="progress-bar" style={{ width: `${proyecto.avance}%` }}>
-                                    <span className="progress-text">{proyecto.avance}%</span>
-                                </div>
-                            </div>
+                            <h3>Registros vTools</h3>
+                            <ul className="links">
+                                {proyecto.vtools.map((link) => (
+                                    <li className="link" key={link}>
+                                        <a
+                                            href={`https://events.vtools.ieee.org/m/${link}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            Evento en vTools #{link}
+                                        </a>.
+                                    </li>
+                                ))}
+                            </ul>
                         </Row>
                         <Row className="stats mb-3">
                             <h3>Stats</h3>
                             <p className="desc">Cantidad de Miembros: ...</p>
                             <p className="desc">Creación: {formatearFecha(proyecto.fecha_creacion)}</p>
+                            <p className="desc">Avance del Proyecto: </p>
+                            <div className="progress-container">
+                                <div className="progress-bar" style={{ width: `${proyecto.avance}%` }}>
+                                    <span className="progress-text">{proyecto.avance}%</span>
+                                </div>
+                            </div>
                         </Row>
                         <Row className="unete mb-3">
                             <h3>Únete</h3>
