@@ -16,6 +16,7 @@ import Proyecto from "./routes/Proyecto.jsx";
 import LogIn from "./routes/LogIn.jsx";
 import Perfil from "./routes/Profile.jsx";
 import Terminos from "./routes/Terminos.jsx";
+import Miembros from "./routes/Miembros.jsx"
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
           <Route path="/proyecto/:id_proyecto" element={<Proyecto />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/terminos" element={<Terminos />} />
+          <Route path="/miembros" element={<Miembros />} />
 
           <Route path="/perfil" element={<Perfil />} />
+          
           
         </Routes>
       </div>

@@ -1,4 +1,5 @@
 import { supabase } from "./SupabaseAPI";
+import { getFotoUsuario } from "./StorageCtrl";
 
 export const UsuarioNuevo = async (correo) => {
     const { data, error } = await supabase.from("usuario").select("id_usuario").eq("correo", correo);
@@ -47,5 +48,81 @@ export const getUsuarioByID = async (Id) => {
         throw error;
     }
 
-    return data[0];
+    if (!data || data.length === 0) {
+      return null;
+    }
+    
+    const usuario = data[0];
+    
+    usuario.foto = await getFotoUsuario(usuario.id_usuario);
+
+    return usuario;
+};
+
+export const getUsuarios = async () => {
+  const { data, error } = await supabase
+    .from("vw_usuarios_completos")
+    .select("*");
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  const usuariosConFoto = await Promise.all(
+    data.map(async (proyecto) => {
+      const foto = await getFotoUsuario(proyecto.id_usuario);
+      return { ...proyecto, foto };
+    })
+  );
+
+  return usuariosConFoto;
+};
+
+export const buscarUsuarios = async (texto, proyectosSeleccionados) => {
+  const { data, error } = await supabase.rpc("buscar_usuarios_completos", {
+      texto_busqueda: texto || null,
+      proyecto_ids: proyectosSeleccionados?.length > 0 ? proyectosSeleccionados : null
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  const usuariosConFoto = await Promise.all(
+    data.map(async (proyecto) => {
+      const foto = await getFotoUsuario(proyecto.id_usuario);
+      return { ...proyecto, foto };
+    })
+  );
+
+  console.log(proyectosSeleccionados, usuariosConFoto)
+
+  return usuariosConFoto;
+};
+
+export const buscarUsuariosProyecto = async (idProyecto) => {
+  const { data, error } = await supabase.rpc("buscar_usuarios_por_proyecto", {
+      proyecto_id: idProyecto
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  const proyectosConFoto = await Promise.all(
+    data.map(async (usuario) => {
+      const foto = await getFotoUsuario(usuario.id_usuario);
+      return { ...usuario, foto };
+    })
+  );
+
+  return proyectosConFoto;
 };
