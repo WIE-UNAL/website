@@ -9,8 +9,6 @@ import { getProyectos, buscarProyectos } from "../ctrl/ProyectosCtrl.js";
 import { getEstados } from "../ctrl/EstadosCtrl.js";
 import { getTags } from "../ctrl/TagsCtrl.js";
 
-import defaultP from '../resources/default/Proyecto.png'
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
@@ -176,7 +174,6 @@ const Projects = () => {
                                         src={p.foto} 
                                         alt={`Imagen proyecto ${p.nombre}`} 
                                         className="img" 
-                                        onError={(e) => { e.target.onerror = null; e.target.src = defaultP; }}
                                     />
                                     <div className="etiquetas">
                                         <span className="state">{p.estado_nombre}</span>

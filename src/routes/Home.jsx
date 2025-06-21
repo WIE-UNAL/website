@@ -8,7 +8,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import img from "../resources/home/home.png";
 import loading from "../resources/loading.gif"
-import defaultP from '../resources/default/Proyecto.png'
 
 import { getProyectosDestacados } from "../ctrl/ProyectosCtrl.js";
 import { addCorreo } from "../ctrl/CorreoSuscripcionCtrl.js";
@@ -173,7 +172,6 @@ const Home = () => {
                     src={p.foto} 
                     alt={`Imagen proyecto ${p.nombre}`} 
                     className="img" 
-                    onError={(e) => { e.target.onerror = null; e.target.src = defaultP; }}
                   />
                   <div className="etiquetas">
                     <span className="state">{p.estado_nombre}</span>

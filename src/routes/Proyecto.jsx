@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Proyecto.css";
+
 import { getProyectoById } from "../ctrl/ProyectosCtrl";
-import { FotoProyecto } from "../util/Foto";
+import { buscarUsuariosProyecto } from "../ctrl/UsuarioCtrl";
+
 import { formatearFecha } from "../util/Fecha";
+
 import loading from "../resources/loading.gif";
+
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -14,13 +18,14 @@ gsap.registerPlugin(ScrollTrigger);
 const Proyecto = () => {
     const { id_proyecto } = useParams();
     const [proyecto, setProyecto] = useState(null);
+    const [miembros, setMiembros] = useState(null);
     const [, setError] = useState(null);
 
     useEffect(() => {
         const fetchProyecto = async () => {
             try {
-                const fetchedProyecto = await getProyectoById(id_proyecto);
-                setProyecto(fetchedProyecto);
+                setProyecto(await getProyectoById(id_proyecto));
+                setMiembros(await buscarUsuariosProyecto(id_proyecto));
             } catch (err) {
                 console.error("Error al cargar el proyecto:", err);
                 setError("Hubo un problema al cargar el proyecto.");
@@ -61,7 +66,7 @@ const Proyecto = () => {
         return () => ctx.revert();
     }, []);
 
-    if (!proyecto) {
+    if (!proyecto || !miembros) {
         return (
             <div className="error">
                 <img src={loading} alt="Cargando..." className="loading" />
@@ -97,7 +102,11 @@ const Proyecto = () => {
                         <hr />
                     </Col>
                     <Col xs={8} md={3} className="image">
-                        <FotoProyecto proyecto={proyecto} className="logo-image" />
+                            <img
+                                src={proyecto.foto} 
+                                alt={`Imagen proyecto ${proyecto.nombre}`} 
+                                className="logo-image" 
+                            />
                     </Col>
                 </Row>
             </Container>
@@ -115,7 +124,33 @@ const Proyecto = () => {
                         </Row>
                         <Row className="miembros mb-3">
                             <h3>Miembros</h3>
-                            <p className="desc">{proyecto.miembros}</p>
+                                {miembros.length > 0 ? (
+                                    miembros.map((p, idx) => {
+                                        return (
+                                            <Row className="members-item mt-2">
+                                                <Col sm={3} md={3} lg={2} xl={2} className="start-block">
+                                                    <img
+                                                        src={p.foto} 
+                                                        alt={`Imagen proyecto ${p.nombre}`} 
+                                                        className="img" 
+                                                    />
+                                                </Col>
+                                                <Col sm={9} md={9} lg={10} xl={10} className="start-block">
+                                                <h4>{p.nombre} {p.apellido}</h4>
+                                                <p className="cargo">{p.cargo} de {proyecto.nombre}</p>
+                                                <p className="desc">{p.carrera}</p>
+                                                <a href={`mailto:${p.correo}`} target="_blank" rel="noopener noreferrer">
+                                                    Contactar
+                                                </a>
+                                                </Col>
+                                            </Row>
+                                        );
+                                    })
+                                ) : (
+                                    <div className="error">
+                                        <p className="no-projects">No hay usuarios disponibles en este momento.</p>
+                                    </div>
+                                )}
                         </Row>
                     </Col>
                     <Col sm={12} md={5} lg={4} xl={3} className="start-block">
@@ -137,7 +172,7 @@ const Proyecto = () => {
                         </Row>
                         <Row className="stats mb-3">
                             <h3>Stats</h3>
-                            <p className="desc">Cantidad de Miembros: ...</p>
+                            <p className="desc">Cantidad de Integrantes: {miembros.length}</p>
                             <p className="desc">Creación: {formatearFecha(proyecto.fecha_creacion)}</p>
                             <p className="desc">Avance del Proyecto: </p>
                             <div className="progress-container">
@@ -149,6 +184,9 @@ const Proyecto = () => {
                         <Row className="unete mb-3">
                             <h3>Únete</h3>
                             <p className="desc">{proyecto.nuevos}</p>
+                            <a href="https://forms.gle/ghC6TBedHnNLfMDZ9" target="_blank" rel="noopener noreferrer">
+                                Únete a Nuestro Equipo
+                            </a>
                         </Row>
                     </Col>
                 </Row>

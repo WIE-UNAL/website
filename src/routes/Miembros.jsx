@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Projects.css";
+import "./Miembros.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import loading from "../resources/loading.gif";
@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Miembros = () => {
     const [usuarios, setUsuarios] = useState([]);
-    const [error, setError] = useState(null);
+    const [, setError] = useState(null);
     const [proyectos, setProyectos] = useState([]);
     const [texto, setTexto] = useState("");
     const [proyectosSeleccionados, setProyectosSeleccionados] = useState([]);
@@ -46,14 +46,13 @@ const Miembros = () => {
 
     const toggleProyecto = (id) => {
         setProyectosSeleccionados((prev) =>
-            prev.includes(id)
-                ? prev.filter((id) => id !== id)
-                : [...prev, id]
+            // eslint-disable-next-line
+            prev.includes(id) ? prev.filter((id) => id !== id) : [...prev, id]
         );
     };
 
     return (
-        <div className="project">
+        <div className="members">
             <div className="header">
                 <h2>Nuestros Increible Equipo</h2>
                 <p className="desc">
@@ -89,45 +88,53 @@ const Miembros = () => {
                     <i className="fa-solid fa-magnifying-glass"></i> Buscar
                 </button>
             </div>
-            <Container fluid className="projects">
-                {error && <p className="text-danger">{error}</p>}
-                <Row className="justify-content-center">
+
+            <Container fluid className="usuarios">
+               <Row className="justify-content-center">
                     {usuarios.length > 0 ? (
-                        usuarios.map((p, i) => {
+                        usuarios.map((p, idx) => {
                             return (
-                                <Col xs={10} md={5} xl={3} key={i} className="project-item">
-                                    <h3>{p.nombre} {p.apellido}</h3>
-                                    <span className="state">{p.cargo}</span>
-                                    <p className="desc">Proyectos Relacionados</p>
-                                    <div className="links">
-                                        {p.proyectos && p.proyectos.length > 0 ? (
-                                            p.proyectos.map((proyecto, idx) => (
-                                                <Link
-                                                    to={`/proyecto/${proyecto.id_proyecto}`}
-                                                    className="mas"
-                                                    key={idx}
-                                                >
-                                                    {proyecto.nombre}
-                                                </Link>
-                                            ))
-                                        ) : (
-                                            <p className="no-projects">No hay proyectos relacionados.</p>
-                                        )} 
+                                <Col key={idx} xs={12} md={6} lg={4} xl={3} className="mb-4">
+                                    <div className="members-item">
+                                        <img
+                                            src={p.foto} 
+                                            alt={`Imagen proyecto ${p.nombre}`} 
+                                            className="img" 
+                                        />
+                                        <h3>{p.nombre} {p.apellido}</h3>
+                                        <span className="state">{p.cargo}</span>
+                                        <p className="desc">Proyectos Relacionados</p>
+                                        <div className="links">
+                                            {p.proyectos && p.proyectos.length > 0 ? (
+                                                p.proyectos.map((proyecto, idx) => (
+                                                    <Link
+                                                        to={`/proyecto/${proyecto.id_proyecto}`}
+                                                        className="mas"
+                                                        key={idx}
+                                                    >
+                                                        {proyecto.nombre}
+                                                    </Link>
+                                                ))
+                                            ) : (
+                                                <p className="no-projects">No hay proyectos relacionados.</p>
+                                            )} 
+                                        </div>
+                                        <a href={`mailto:${p.correo}`} target="_blank" rel="noopener noreferrer" className="contact">
+                                            Contactar
+                                        </a>
                                     </div>
-                                    <a href={`mailto:${p.correo}`} target="_blank" rel="noopener noreferrer">
-                                        Contactar
-                                    </a>
                                 </Col>
                             );
                         })
-                    ) : !error ? (
+                    ) : (
                         <div className="error">
                             <img src={loading} alt="Cargando..." className="loading" />
                             <p className="no-projects">No hay usuarios disponibles en este momento.</p>
                         </div>
-                    ) : null}
-                </Row>
+                    )}
+               </Row>
             </Container>
+
             <Container fluid className="idea d-flex justify-content-center align-items-center">
                 <Col xs={10} md={8} lg={6} className="text-center">
                     <h2>Únete a Nuestra Comunidad</h2>
