@@ -202,7 +202,8 @@
 
 @media (max-width: 576px ){
     .proyecto .information .members-item .img {
-        width: 25%; 
+        width: 50%; 
+        margin-bottom: 1rem;
     }
 
     .proyecto .information .members-item{
