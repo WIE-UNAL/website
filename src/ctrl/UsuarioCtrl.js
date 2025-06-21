@@ -24,8 +24,7 @@ export const insertarUsuario = async (usuario) => {
         correo: usuario.correo,
         telefono: usuario.telefono,
         cumple: usuario.cumple, 
-        id_carrera: usuario.id_carrera,
-        id_cargo: 6
+        id_carrera: usuario.id_carrera
       },
     ]).select();
   if (error) {
