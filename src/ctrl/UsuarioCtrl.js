@@ -49,3 +49,31 @@ export const getUsuarioByID = async (Id) => {
 
     return data[0];
 };
+
+export const getUsuarios = async () => {
+  const { data, error } = await supabase
+    .from("vw_usuarios_completos")
+    .select("*");
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+  return data;
+};
+
+export const buscarUsuarios = async (texto, proyectosSeleccionados) => {
+  const { data, error } = await supabase.rpc("buscar_usuarios_completos", {
+      texto_busqueda: texto || null,
+      proyecto_ids: proyectosSeleccionados?.length > 0 ? proyectosSeleccionados : null
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+  return data;
+};
