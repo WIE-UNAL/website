@@ -49,3 +49,16 @@ export const getDefaultUsuario = () => {
   const { data } = supabase.storage.from("img").getPublicUrl(`Default/Usuario.png`);
   return data.publicUrl;
 };
+
+export const subirFotoUsuario = async (file, userId) => {
+  const path = `Usuarios/${userId}.png`;
+
+  // eslint-disable-next-line
+  const { data, error } = await supabase.storage
+    .from('img')
+    .upload(path, file, { upsert: true });
+
+  if (error) throw error;
+
+  return await getFotoUsuario(userId);
+}

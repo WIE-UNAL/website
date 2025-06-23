@@ -30,3 +30,19 @@ export const addCorreo = async (newCorreo) => {
   
   return { message: "Correo registrado con éxito.", exists: false, data: data[0] };
 };
+
+export const removeCorreo = async (correo) => {
+  const { data, error } = await supabase
+    .from("email_suscripcion")
+    .delete()
+    .eq("correo", correo); 
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  return data;
+}
