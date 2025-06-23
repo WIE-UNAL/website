@@ -2,7 +2,30 @@ import { supabase } from "./SupabaseAPI";
 import { getFotoUsuario } from "./StorageCtrl";
 
 export const UsuarioNuevo = async (correo) => {
-    const { data, error } = await supabase.from("usuario").select("id_usuario").eq("correo", correo);
+  const { data, error } = await supabase.from("usuario").select("id_usuario").eq("correo", correo);
+
+  if (error) {
+      console.error("[Supabase Error] message:", error.message);
+      console.error("[Supabase Error] details:", error.details);
+      console.error("[Supabase Error] hint:", error.hint);
+      throw error;
+  }
+
+  return data[0];
+};
+
+export const editarUsuario = async (usuario) => {
+  const { data, error } = await supabase
+    .from("usuario")
+    .update({
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      correo: usuario.correo,
+      telefono: usuario.telefono,
+      cumple: usuario.cumple,
+      id_carrera: usuario.id_carrera
+    })
+    .eq("id_usuario", usuario.id_usuario);
 
     if (error) {
         console.error("[Supabase Error] message:", error.message);
@@ -11,8 +34,8 @@ export const UsuarioNuevo = async (correo) => {
         throw error;
     }
 
-    return data[0];
-};
+    return data;
+}
 
 export const insertarUsuario = async (usuario) => {
   const { data, error } = await supabase

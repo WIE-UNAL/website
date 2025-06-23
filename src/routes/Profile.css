@@ -19,34 +19,6 @@
     border-radius: 1rem;
 }
 
-.profile h2 {
-    font-weight: bold;
-    color: #1C0623;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.profile .box-info {
-    text-align: left;
-    margin-top: 1.5rem;
-}
-
-.profile h3 {
-    font-weight: 300;
-    color: #1C0623;
-}
-
-.profile .box-info .label {
-    font-weight: bold;
-    text-align: left;
-    margin: 0;
-}
-
-.profile .box-info .text {
-    color: #222;
-    font-size: 0.95rem;
-    margin: 0rem 0rem 1rem 0rem;
-}
-
 .profile .menu button  {
     color: #B41EB7;
     margin: 0.5rem;
@@ -64,3 +36,16 @@
     border-radius: 1rem;
     transform: translateY(-3px);
 }
+
+.profile h2 {
+    font-weight: bold;
+    color: #1C0623;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile h3 {
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: #1C0623;
+}
+
