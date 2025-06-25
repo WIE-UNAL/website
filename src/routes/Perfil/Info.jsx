@@ -250,17 +250,21 @@ export const Info = ({ usuario }) => {
                         onChange={handleImageChange}
                     />
                 </Col>
-                
                 </>
             )}
             </Row>
         
         <hr />
-        {!isEditing ? (
-            <button onClick={() => setIsEditing(true)}>Editar</button>
-        ) : (
-            <button onClick={handleSave}>Guardar</button>
-        )}
+        <div className="botones">
+            {!isEditing ? (
+                <button onClick={() => setIsEditing(true)}>Editar</button>
+            ) : (
+                <div>
+                    <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                    <button onClick={handleSave}>Guardar</button>
+                </div>
+            )}
+        </div>
         </Container>
         </div>
     );

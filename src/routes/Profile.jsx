@@ -6,6 +6,7 @@ import "./Profile.css";
 import { AutenticadoC, removeUsuarioStorage } from "../util/Auth";
 
 import { Info } from "./Perfil/Info";
+import { EditarUsuarioAdmin } from "./Perfil/EditUser"
 
 import loading from "../resources/loading.gif";
 import gsap from "gsap";
@@ -16,6 +17,7 @@ export const Perfil = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [menu, setMenu] = useState(1);
+    const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
         const fetchUsuario = async () => {
@@ -25,6 +27,7 @@ export const Perfil = () => {
                     navigate("/");
                 } else {
                     setUsuario(user);
+                    setAdmin(user.es_admin);
                 }
             } catch (err) {
                 console.error("Error al cargar el usuario:", err);
@@ -37,10 +40,8 @@ export const Perfil = () => {
         fetchUsuario();
     }, [navigate]);
 
-    // GSAP Animations
     useEffect(() => {
         let ctx = gsap.context(() => {
-            // Animación para el encabezado (menu)
             gsap.from(".menu", {
                 opacity: 0,
                 x: -100,
@@ -48,7 +49,6 @@ export const Perfil = () => {
                 ease: "power2.out",
             });
 
-            // Animación para la información personal
             gsap.from(".info", {
                 opacity: 0,
                 x: 100,
@@ -56,7 +56,6 @@ export const Perfil = () => {
                 ease: "power2.out",
             });
 
-            // Animación para las filas de información (bloques)
             gsap.from(".information", {
                 opacity: 0,
                 y: 30,
@@ -66,7 +65,6 @@ export const Perfil = () => {
             });
         });
 
-        // Cleanup al desmontar el componente
         return () => ctx.revert();
     }, []);
 
@@ -92,22 +90,30 @@ export const Perfil = () => {
         <div className="profile">
             <Container fluid>
                 <Row className="block justify-content-center align-items-stretch">
-                    {/* Encabezado lateral */}
                     <Col md={12} lg={3} className="menu">
                         <h2>{usuario.nombre} {usuario.apellido}</h2>
                         <h3>{usuario.carrera}</h3>
+                        {admin ? (
+                            <p className="state">WIE Admin</p>
+                        ): (<hr/>)}
                         <button onClick={() => setMenu(1)}>
                             Mi Perfil
                         </button>
+                        {admin ? (
+                            <button onClick={() => setMenu(2)}>
+                                Editar Usuarios
+                            </button>
+                        ): (<hr/>)}
                         <button onClick={() => {removeUsuarioStorage(); navigate("/");}}>
                             Cerrar Sesión
                         </button>
                     </Col>
 
-                    {/* Información personal */}
                     <Col md={12} lg={8} className="info">
                         { menu===1 ? (
                             <Info usuario={usuario} />
+                        ) : menu===2 ? (
+                            <EditarUsuarioAdmin usuario={usuario} />
                         ) : (
                             <div className="error">
                                 <img src={loading} alt="Cargando..." className="loading" />

@@ -21,9 +21,9 @@
 
 .profile .menu button  {
     color: #B41EB7;
-    margin: 0.5rem;
+    margin: 0.25rem;
     width: 75%;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem;
     border-radius: 1rem;
     transition: all 0.3s ease;
     border: 1px solid #ED7EFF;
@@ -49,3 +49,20 @@
     color: #1C0623;
 }
 
+.profile .state {
+    color: #fff;
+    width: 75%;
+    border-radius: 1rem;
+    padding: 0.5% 5%;
+    transition: all 0.3s ease;
+    line-height: 150%;
+    display: inline-block;
+    margin: 1rem;
+    box-shadow: 0 0 8px #ED7EFF;
+    background: linear-gradient(90deg, #B41EB7 0%, #503589 100%);
+}
+
+.profile hr {
+    color: #ffffff00;
+    margin: 0;
+}
