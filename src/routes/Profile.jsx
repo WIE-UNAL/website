@@ -16,7 +16,7 @@ export const Perfil = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const [menu, setMenu] = useState(1);
+    const [menu, setMenu] = useState(2);
     const [admin, setAdmin] = useState(false);
 
     useEffect(() => {

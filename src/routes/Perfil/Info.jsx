@@ -7,6 +7,7 @@ import { subirFotoUsuario } from "../../ctrl/StorageCtrl";
 import { editarUsuario } from "../../ctrl/UsuarioCtrl";
 import { addCorreo, removeCorreo } from "../../ctrl/CorreoSuscripcionCtrl";
 
+import { formatearFecha } from "../../util/Fecha";
 import { mostrarAlert } from "../../util/Alert";
 
 import "./Info.css"
@@ -110,7 +111,7 @@ export const Info = ({ usuario }) => {
                     </Col>
                     <Col md={12} lg={6} className="information">
                         <p className="label">Cumpleaños</p>
-                        <p className="text">{usuario.cumple}</p>
+                        <p className="text">{formatearFecha(usuario.cumple)}</p>
                     </Col>
                     <Col md={12} lg={6} className="information">
                         <p className="label">¿Suscrito?</p>

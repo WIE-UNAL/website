@@ -1,0 +1,68 @@
+.box-edit-user h2 {
+    margin-bottom: 1.5rem;
+}
+
+
+
+.box-edit-user input{
+    border: 1px solid #ED7EFF;
+    padding: 0.5rem 1rem;
+    width: 70%;
+    border-radius: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.box-edit-user .search-button {
+    color: #ED7EFF;
+    background: #fff;
+    text-decoration: none;
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 20%;
+}
+
+.box-edit-user .search-button:active,
+.box-edit-user .search-button:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    text-decoration: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.box-edit-user .label {
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+}
+
+.box-edit-user .text {
+    color: #222;
+    font-size: 0.95rem;
+    margin: 0rem 0rem 1rem 0rem;
+    text-align: left;
+}
+
+.box-edit-user .links {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.box-edit-user i {
+    color: #503589 !important;
+}
+
+.box-edit-user a {
+    color: #B41EB7;
+    text-decoration: none;
+}
+
+.box-edit-user a:hover {
+    text-decoration: underline;
+}

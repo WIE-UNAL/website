@@ -81,6 +81,30 @@ export const getUsuarioByID = async (Id) => {
     return usuario;
 };
 
+export const getUsuarioByCorreo = async (correo) => {
+    const { data, error } = await supabase
+      .from("vw_usuarios_completos")
+      .select("*")
+      .eq("correo", correo);
+
+    if (error) {
+        console.error("[Supabase Error] message:", error.message);
+        console.error("[Supabase Error] details:", error.details);
+        console.error("[Supabase Error] hint:", error.hint);
+        throw error;
+    }
+
+    if (!data || data.length === 0) {
+      return null;
+    }
+    
+    const usuario = data[0];
+    
+    usuario.foto = await getFotoUsuario(usuario.id_usuario);
+
+    return usuario;
+};
+
 export const getUsuarios = async () => {
   const { data, error } = await supabase
     .from("vw_usuarios_completos")
@@ -148,3 +172,4 @@ export const buscarUsuariosProyecto = async (idProyecto) => {
 
   return proyectosConFoto;
 };
+
