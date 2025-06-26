@@ -23,7 +23,8 @@ export const editarUsuario = async (usuario) => {
       correo: usuario.correo,
       telefono: usuario.telefono,
       cumple: usuario.cumple,
-      id_carrera: usuario.id_carrera
+      id_carrera: usuario.id_carrera,
+      id_cargo: usuario.id_cargo
     })
     .eq("id_usuario", usuario.id_usuario);
 
@@ -173,3 +174,33 @@ export const buscarUsuariosProyecto = async (idProyecto) => {
   return proyectosConFoto;
 };
 
+export const buscarProyectosUsuario = async (idUsario) => {
+  const { data, error } = await supabase.rpc("get_usuario_proyectos_cargos", {
+      p_user_id: idUsario
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  return data;
+};
+
+export const updateProyectosUsuario = async (idUsuario, proyecto) => {
+  const { error } = await supabase
+    .rpc('upsert_usuario_proyecto', {
+      p_usuario:  idUsuario,
+      p_proyecto: proyecto.id_proyecto,
+      p_cargo: proyecto.id_cargo     
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+}

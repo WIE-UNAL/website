@@ -1,16 +1,48 @@
+.box-edit-user {
+    text-align: left;
+}
+
+.box-edit-user h2 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #1C0623;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.box-edit-user .sep {
+    color: #503589;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
 .box-edit-user h2 {
     margin-bottom: 1.5rem;
 }
 
+.box-edit-user .message {
+    text-align: center;
+}
 
+.box-edit-user .info-box {
+    padding: 2.5rem 1rem;
+}
 
-.box-edit-user input{
+.box-edit-user input {
     border: 1px solid #ED7EFF;
     padding: 0.5rem 1rem;
     width: 70%;
     border-radius: 2rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
+    outline: none;
+    color: #1C0623;
+}
+
+.box-edit-user input:focus,
+.box-edit-user input:focus-visible {
+    border: 1px solid #503589;
 }
 
 
@@ -56,6 +88,7 @@
 
 .box-edit-user i {
     color: #503589 !important;
+    margin-right: 0.5rem;
 }
 
 .box-edit-user a {
@@ -65,4 +98,42 @@
 
 .box-edit-user a:hover {
     text-decoration: underline;
+}
+
+.box-edit-user .cargo-select {
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    width: 75%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    outline:none;
+    color: #1C0623;
+}
+
+.box-edit-user .cargo-p-select {
+    border: 1px solid #ED7EFF;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    padding: 0rem 0.5rem;
+    outline:none;
+    color: #1C0623;
+}
+
+.box-edit-user button  {
+    color: #B41EB7;
+    margin: 0.25rem;
+    width: 100%;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid #ED7EFF;
+}
+
+.box-edit-user button:active,
+.box-edit-user button:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    border-radius: 1rem;
+    transform: translateY(-3px);
 }
