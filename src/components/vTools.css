@@ -1,180 +1,133 @@
 .vtools-manager {
-          width: 100%;
-          margin: 16px 0;
-        }
+  width: 100%;
+  margin: 16px 0;
+}
 
-        .vtools-header {
-          margin-bottom: 12px;
-        }
+.manager-title {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
 
-        .manager-title {
-          display: block;
-          font-weight: 600;
-          font-size: 14px;
-          color: #374151;
-        }
+.tools-count {
+  font-weight: 400;
+  color: #6B7280;
+  font-size: 12px;
+  margin-left: 8px;
+}
 
-        .tools-count {
-          font-weight: 400;
-          color: #6B7280;
-          font-size: 12px;
-          margin-left: 8px;
-        }
+.vtools-list {
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-bottom: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
 
-        .vtools-list {
-          border: 1px solid #D1D5DB;
-          border-radius: 8px;
-          background-color: #ffffff;
-          margin-bottom: 12px;
-          max-height: 300px;
-          overflow-y: auto;
-        }
+.vtool-item {
+  padding: 12px;
+  border-bottom: 1px solid #E5E7EB;
+}
 
-        .vtool-item {
-          padding: 12px;
-          border-bottom: 1px solid #E5E7EB;
-        }
+.vtool-item:last-child {
+  border-bottom: none;
+}
 
-        .vtool-item:last-child {
-          border-bottom: none;
-        }
+.vtool-input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
 
-        .vtool-input-group {
-          display: flex;
-          align-items: center;
-          margin-bottom: 6px;
-        }
+.url-prefix,
+.url-prefix-add {
+  background-color: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  border-right: none;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #6B7280;
+  border-radius: 6px 0 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+}
 
-        .url-prefix {
-          background-color: #F3F4F6;
-          border: 1px solid #D1D5DB;
-          border-right: none;
-          padding: 8px 12px;
-          font-size: 13px;
-          color: #6B7280;
-          border-radius: 6px 0 0 6px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 180px;
-        }
+.vtool-input,
+.new-vtool-input  {
+  flex: 1;
+  border: 1px solid #ED7EFF;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  max-width: 75%;
+  margin-right: 1rem;
+}
 
-        .vtool-input {
-          flex: 1;
-          border: 1px solid #D1D5DB;
-          border-left: none;
-          border-right: none;
-          padding: 8px 12px;
-          font-size: 14px;
-          outline: none;
-          transition: border-color 0.2s ease;
-        }
+.remove-btn,
+.add-btn {
+  background-color: #503589;
+  color: white !important;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 0 6px 6px 0;
+  transition: background-color 0.2s ease;
+  max-width: 15%;
+}
 
-        .vtool-input:focus {
-          border-color: #3B82F6;
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
+.remove-btn:hover,
+.add-btn:hover {
+  background-color: #503589;
+  color: white;
+}
 
-        .remove-btn {
-          background-color: #EF4444;
-          color: white;
-          border: none;
-          padding: 8px 12px;
-          cursor: pointer;
-          font-size: 16px;
-          font-weight: bold;
-          border-radius: 0 6px 6px 0;
-          transition: background-color 0.2s ease;
-        }
+.full-url-preview {
+  margin-left: 12px;
+}
 
-        .remove-btn:hover {
-          background-color: #DC2626;
-        }
+.full-url-preview small {
+  color: #6B7280;
+  font-size: 11px;
+  word-break: break-all;
+}
 
-        .full-url-preview {
-          margin-left: 12px;
-        }
+.no-vtools-message {
+  text-align: center;
+  color: #6B7280;
+  font-style: italic;
+  padding: 20px;
+}
 
-        .full-url-preview small {
-          color: #6B7280;
-          font-size: 11px;
-          word-break: break-all;
-        }
+.add-vtool-section {
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 16px;
+}
 
-        .no-vtools-message {
-          text-align: center;
-          color: #6B7280;
-          font-style: italic;
-          padding: 20px;
-        }
+.add-input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
 
-        .add-vtool-section {
-          background-color: #F9FAFB;
-          border: 1px solid #E5E7EB;
-          border-radius: 8px;
-          padding: 16px;
-        }
+.add-btn:disabled {
+  background-color: #ED7EFF;
+  cursor: not-allowed;
+}
 
-        .add-input-group {
-          display: flex;
-          align-items: center;
-          margin-bottom: 8px;
-        }
-
-        .url-prefix-add {
-          background-color: #F3F4F6;
-          border: 1px solid #D1D5DB;
-          border-right: none;
-          padding: 8px 12px;
-          font-size: 13px;
-          color: #6B7280;
-          border-radius: 6px 0 0 6px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 180px;
-        }
-
-        .new-vtool-input {
-          flex: 1;
-          border: 1px solid #D1D5DB;
-          border-left: none;
-          border-right: none;
-          padding: 8px 12px;
-          font-size: 14px;
-          outline: none;
-          transition: border-color 0.2s ease;
-        }
-
-        .new-vtool-input:focus {
-          border-color: #3B82F6;
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .add-btn {
-          background-color: #10B981;
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 500;
-          border-radius: 0 6px 6px 0;
-          transition: background-color 0.2s ease;
-        }
-
-        .add-btn:hover:not(:disabled) {
-          background-color: #059669;
-        }
-
-        .add-btn:disabled {
-          background-color: #9CA3AF;
-          cursor: not-allowed;
-        }
-
-        .add-help-text {
-          color: #6B7280;
-          font-size: 12px;
-          display: block;
-          margin-top: 4px;
-        }
+.add-help-text {
+  color: #6B7280;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+}
