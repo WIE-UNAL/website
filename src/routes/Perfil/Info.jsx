@@ -127,7 +127,7 @@ export const Info = ({ usuario }) => {
                                         className="mas"
                                         key={idx}
                                     >
-                                        <i class="fa-solid fa-angle-right"></i> {proyecto.nombre} <br />
+                                        <i class="fa-solid fa-angle-right"></i> {proyecto.cargo} de {proyecto.nombre} <br />
                                     </Link>
                                 ))
                             ) : (

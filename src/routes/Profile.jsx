@@ -7,6 +7,7 @@ import { AutenticadoC, removeUsuarioStorage } from "../util/Auth";
 
 import { Info } from "./Perfil/Info";
 import { EditarUsuarioAdmin } from "./Perfil/EditUser"
+import { EditarProyectoAdmin } from "./Perfil/EditProyecto"
 
 import loading from "../resources/loading.gif";
 import gsap from "gsap";
@@ -16,7 +17,7 @@ export const Perfil = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const [menu, setMenu] = useState(2);
+    const [menu, setMenu] = useState(3);
     const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
@@ -100,9 +101,14 @@ export const Perfil = () => {
                             Mi Perfil
                         </button>
                         {admin ? (
-                            <button onClick={() => setMenu(2)}>
-                                Editar Usuarios
-                            </button>
+                            <div>
+                                <button onClick={() => setMenu(2)}>
+                                    Editar Usuarios
+                                </button>
+                                <button onClick={() => setMenu(3)}>
+                                    Editar Proyectos
+                                </button>
+                            </div>
                         ): (<hr/>)}
                         <button onClick={() => {removeUsuarioStorage(); navigate("/");}}>
                             Cerrar Sesión
@@ -113,7 +119,9 @@ export const Perfil = () => {
                         { menu===1 ? (
                             <Info usuario={usuario} />
                         ) : menu===2 ? (
-                            <EditarUsuarioAdmin usuario={usuario} />
+                            <EditarUsuarioAdmin/>
+                        ) : menu===3 ? (
+                            <EditarProyectoAdmin idUsuario={usuario.id_usuario} />
                         ) : (
                             <div className="error">
                                 <img src={loading} alt="Cargando..." className="loading" />

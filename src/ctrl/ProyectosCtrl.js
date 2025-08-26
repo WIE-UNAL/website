@@ -97,3 +97,23 @@ export const getProyectoById = async (id) => {
 
   return proyecto;
 };
+
+export const buscarProyectosLider = async (idUsuario) => {
+  const { data, error } = await supabase.rpc("obtener_eventos_por_lider", { p_id_usuario: idUsuario.idUsuario });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  const proyectosConFoto = await Promise.all(
+    data.map(async (proyecto) => {
+      const foto = await getFotoProyecto(proyecto.id_proyecto);
+      return { ...proyecto, foto };
+    })
+  );
+
+  return proyectosConFoto;
+};

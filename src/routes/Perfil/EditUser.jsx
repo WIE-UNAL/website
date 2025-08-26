@@ -18,18 +18,21 @@ export const EditarUsuarioAdmin = () => {
     const [searchStatus, setSearchStatus] = useState("idle"); 
 
     const [cargos, setCargos] = useState([]);
+    const [cargosP, setCargosP] = useState([]);
 
     useEffect(() => {
-        const fetchCarreras = async () => {
+        const fetchCargos = async () => {
         try {
             const fetchedCargos = await getCargos(); 
+            const filteredCargos = fetchedCargos.filter(cargo => ![1, 2, 3].includes(cargo.id_cargo));
             setCargos(fetchedCargos);
+            setCargosP(filteredCargos);
         } catch (error) {
             console.error("Error fetching careers:", error);
         }
         };
 
-        fetchCarreras();
+        fetchCargos();
     }, []);
 
     const buscarUsuarioHandler = async () => {
@@ -151,6 +154,7 @@ export const EditarUsuarioAdmin = () => {
                                         <Link to={`/proyecto/${proyecto.id_proyecto}`} className="mas" key={idx}>
                                             <i class="fa-solid fa-angle-right"></i> {proyecto.nombre_proyecto} 
                                         </Link>
+                                        {console.log(cargosP)}
                                         <select
                                             className="cargo-p-select"
                                             value={proyecto.id_cargo}
@@ -166,7 +170,7 @@ export const EditarUsuarioAdmin = () => {
                                             required
                                         >
                                             <option value="-1">N/A</option>
-                                            {cargos.map((cargo) => (
+                                            {cargosP.map((cargo) => (
                                             <option key={cargo.id_cargo} value={cargo.id_cargo}>
                                                 {cargo.nombre}
                                             </option>

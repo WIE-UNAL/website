@@ -1,0 +1,117 @@
+.box-edit-proyecto .descripcion {
+    margin: 1rem 0rem 0rem 0rem;
+}
+
+.box-edit-proyecto .proyectos {
+    text-align: left;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    margin: 2rem 0rem;
+    border: double #ED7EFF;
+}
+
+.box-edit-proyecto h3 {
+    color: #1C0623;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0rem 0rem 0.5rem 0rem;
+    text-align: left;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5)
+}
+
+.box-edit-proyecto hr {
+    margin: 0.5rem;
+}
+
+
+.box-edit-proyecto .text {
+    color: #222;
+    font-size: 0.95rem;
+    margin: 0rem 0rem 0.5rem 0rem;
+    text-align: left;
+}
+
+
+.box-edit-proyecto img {
+    width: 50%;
+    border-radius: 1rem;
+}
+
+.box-edit-proyecto .progress-container {
+  width: 100%;
+  background-color: #bebebe75; 
+  border-radius: 0.5rem;
+  overflow: hidden; 
+  position: relative; 
+  height: 1.5rem;
+  margin: 1rem 0rem 1rem 0rem;
+  padding: 0;
+}
+
+.box-edit-proyecto .progress-bar {
+  height: 100%; 
+  background: linear-gradient(90deg, #ED7EFF  0%, #B41EB7 50%, #503589 100%);
+  transition: width 0.3s ease; 
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  color: #fff;
+  font-weight: 500; 
+  font-size: 0.85rem;
+}
+
+.box-edit-proyecto .progress-text {
+  position: absolute; 
+  width: 100%; 
+}
+
+.box-edit-proyecto i {
+    color: #503589 !important;
+    margin-right: 0.5rem;
+}
+
+.box-edit-proyecto a {
+    color: #B41EB7;
+    text-decoration: none;
+}
+
+.box-edit-proyecto a:hover {
+    text-decoration: underline;
+}
+
+.box-edit-proyecto .state {
+    width: auto;
+    margin: 0rem 0rem 1rem 0rem;
+}
+
+.box-edit-proyecto button  {
+    color: #B41EB7;
+    margin: 0.25rem;
+    width: 100%;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid #ED7EFF;
+}
+
+.box-edit-proyecto button:active,
+.box-edit-proyecto button:hover {
+    color: #fff !important;
+    background: linear-gradient(90deg, #B41EB7 0%, #ED7EFF 100%);
+    border-radius: 1rem;
+    transform: translateY(-3px);
+}
+
+.box-edit-proyecto textarea {
+    height: 200px;
+}
+
+.counter {
+    text-align: start;
+    color: #636363;
+    font-size: 0.75rem;
+    margin: -1rem 0rem;
+    text-align: left;
+}
