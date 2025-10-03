@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import "./vTools.css"
 
 export const VToolsManager = ({ 
-  vtools = [], 
-  onVToolsChange, 
-  proyecto, 
-  setProyecto,
-  urlPrefix = "https://events.vtools.ieee.org/m/" 
-}) => {
+    vtools = [], 
+    onVToolsChange, 
+    proyecto, 
+    setProyecto,
+    urlPrefix = "https://events.vtools.ieee.org/m/" 
+  }) => {
+
   const [localVTools, setLocalVTools] = useState(vtools || []);
   const [newVTool, setNewVTool] = useState('');
 
@@ -101,7 +102,7 @@ export const VToolsManager = ({
                   className="remove-btn"
                   title="Eliminar vTool"
                 >
-                  ×
+                  x
                 </button>
               </div>
               <div className="full-url-preview">
