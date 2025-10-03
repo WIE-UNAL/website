@@ -154,7 +154,6 @@ export const EditarUsuarioAdmin = () => {
                                         <Link to={`/proyecto/${proyecto.id_proyecto}`} className="mas" key={idx}>
                                             <i class="fa-solid fa-angle-right"></i> {proyecto.nombre_proyecto} 
                                         </Link>
-                                        {console.log(cargosP)}
                                         <select
                                             className="cargo-p-select"
                                             value={proyecto.id_cargo}

@@ -204,3 +204,33 @@ export const updateProyectosUsuario = async (idUsuario, proyecto) => {
     throw error;
   }
 }
+
+export const addLiderProyecto = async (idUsuario, idProyecto) => {
+  const { error } = await supabase
+    .from('usuarios_proyectos')
+    .insert([{
+      id_usuario: idUsuario,
+      id_proyecto: idProyecto,
+      id_cargo: 4
+    }])
+    .select();
+
+    if (error) {
+      console.error("[Supabase Error] message:", error.message);
+      console.error("[Supabase Error] details:", error.details);
+      console.error("[Supabase Error] hint:", error.hint);
+      throw error;
+    }
+}
+
+export const deleteUsuariosProyecto = async (idProyecto) => {
+  const { error } = await supabase
+    .from("usuarios_proyectos")
+    .delete()
+    .eq("id_proyecto", idProyecto);
+      
+  if (error) {
+    console.error("Error al eliminar usuarios del proyecto:", error);
+    throw error;
+  }
+}

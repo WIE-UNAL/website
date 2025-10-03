@@ -144,7 +144,7 @@ export const VToolsManager = ({
             disabled={!newVTool.trim()}
             className="add-btn"
           >
-            Añadir
+            +
           </button>
         </div>
         <small className="add-help-text">

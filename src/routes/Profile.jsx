@@ -8,6 +8,7 @@ import { AutenticadoC, removeUsuarioStorage } from "../util/Auth";
 import { Info } from "./Perfil/Info";
 import { EditarUsuarioAdmin } from "./Perfil/EditUser"
 import { EditarProyectoAdmin } from "./Perfil/EditProyecto"
+import { AddValues } from "./Perfil/AddValues"
 
 import loading from "../resources/loading.gif";
 import gsap from "gsap";
@@ -108,6 +109,9 @@ export const Perfil = () => {
                                 <button onClick={() => setMenu(3)}>
                                     Editar Proyectos
                                 </button>
+                                <button onClick={() => setMenu(4)}>
+                                    Editar Valores
+                                </button>
                             </div>
                         ): (<hr/>)}
                         <button onClick={() => {removeUsuarioStorage(); navigate("/");}}>
@@ -122,6 +126,8 @@ export const Perfil = () => {
                             <EditarUsuarioAdmin/>
                         ) : menu===3 ? (
                             <EditarProyectoAdmin idUsuario={usuario.id_usuario} />
+                        ) : menu===4 ? (
+                            <AddValues/>
                         ) : (
                             <div className="error">
                                 <img src={loading} alt="Cargando..." className="loading" />

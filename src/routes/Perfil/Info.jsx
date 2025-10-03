@@ -249,6 +249,7 @@ export const Info = ({ usuario }) => {
                         type="file"
                         accept="image/*"
                         onChange={handleImageChange}
+                        className="form-control"
                     />
                 </Col>
                 </>

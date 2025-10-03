@@ -25,6 +25,19 @@ export const getDefaultProyect = () => {
   return data.publicUrl;
 };
 
+export const subirFotoProyecto = async (file, id) => {
+  const path = `Proyectos/${id}.png`;
+
+  // eslint-disable-next-line
+  const { data, error } = await supabase.storage
+    .from('img')
+    .upload(path, file, { upsert: true });
+
+  if (error) throw error;
+
+  return await getFotoProyecto(id);
+}
+
 export const getFotoUsuario = async (id) => {
   const path = `Usuarios/${id}.png`;
 
