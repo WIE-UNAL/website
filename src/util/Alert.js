@@ -53,4 +53,29 @@ export const mostrarAlert = (tipo, mensaje) => {
     });
 };
 
-export default mostrarAlert;
+export const mostrarConfirmacion = (mensaje, titulo = '¿Estás seguro?') => {
+    return Swal.fire({
+        title: titulo,
+        text: mensaje,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        customClass: {
+            popup: 'alert-popup',
+            title: 'alert-title',
+            htmlContainer: 'alert-message',
+            confirmButton: 'alert-button alert-button-error',
+            cancelButton: 'alert-button alert-button-secondary',
+            icon: 'alert-icon'
+        },
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    });
+};

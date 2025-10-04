@@ -23,7 +23,8 @@ export const editarUsuario = async (usuario) => {
       correo: usuario.correo,
       telefono: usuario.telefono,
       cumple: usuario.cumple,
-      id_carrera: usuario.id_carrera
+      id_carrera: usuario.id_carrera,
+      id_cargo: usuario.id_cargo
     })
     .eq("id_usuario", usuario.id_usuario);
 
@@ -62,6 +63,30 @@ export const getUsuarioByID = async (Id) => {
       .from("vw_usuarios_completos")
       .select("*")
       .eq("id_usuario", Id);
+
+    if (error) {
+        console.error("[Supabase Error] message:", error.message);
+        console.error("[Supabase Error] details:", error.details);
+        console.error("[Supabase Error] hint:", error.hint);
+        throw error;
+    }
+
+    if (!data || data.length === 0) {
+      return null;
+    }
+    
+    const usuario = data[0];
+    
+    usuario.foto = await getFotoUsuario(usuario.id_usuario);
+
+    return usuario;
+};
+
+export const getUsuarioByCorreo = async (correo) => {
+    const { data, error } = await supabase
+      .from("vw_usuarios_completos")
+      .select("*")
+      .eq("correo", correo);
 
     if (error) {
         console.error("[Supabase Error] message:", error.message);
@@ -148,3 +173,64 @@ export const buscarUsuariosProyecto = async (idProyecto) => {
 
   return proyectosConFoto;
 };
+
+export const buscarProyectosUsuario = async (idUsario) => {
+  const { data, error } = await supabase.rpc("get_usuario_proyectos_cargos", {
+      p_user_id: idUsario
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+
+  return data;
+};
+
+export const updateProyectosUsuario = async (idUsuario, proyecto) => {
+  const { error } = await supabase
+    .rpc('upsert_usuario_proyecto', {
+      p_usuario:  idUsuario,
+      p_proyecto: proyecto.id_proyecto,
+      p_cargo: proyecto.id_cargo     
+    });
+
+  if (error) {
+    console.error("[Supabase Error] message:", error.message);
+    console.error("[Supabase Error] details:", error.details);
+    console.error("[Supabase Error] hint:", error.hint);
+    throw error;
+  }
+}
+
+export const addLiderProyecto = async (idUsuario, idProyecto) => {
+  const { error } = await supabase
+    .from('usuarios_proyectos')
+    .insert([{
+      id_usuario: idUsuario,
+      id_proyecto: idProyecto,
+      id_cargo: 4
+    }])
+    .select();
+
+    if (error) {
+      console.error("[Supabase Error] message:", error.message);
+      console.error("[Supabase Error] details:", error.details);
+      console.error("[Supabase Error] hint:", error.hint);
+      throw error;
+    }
+}
+
+export const deleteUsuariosProyecto = async (idProyecto) => {
+  const { error } = await supabase
+    .from("usuarios_proyectos")
+    .delete()
+    .eq("id_proyecto", idProyecto);
+      
+  if (error) {
+    console.error("Error al eliminar usuarios del proyecto:", error);
+    throw error;
+  }
+}

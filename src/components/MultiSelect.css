@@ -1,0 +1,54 @@
+.multi-tag-selector {
+          border: 1px solid #ED7EFF;
+          border-radius: 8px;
+          padding: 16px;
+          background-color: #ffffff;
+        }
+        
+        .selector-actions {
+          display: flex;
+          gap: 8px;
+        }
+        
+        .tags-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          max-height: 200px;
+          overflow-y: auto;
+          margin-bottom: 16px;
+        }
+        
+        .tag-checkbox {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        
+        .tag-checkbox:hover {
+          background-color: #ee7eff48;
+        }
+        
+        .tag-checkbox input[type="checkbox"] {
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+        }
+        
+        .tag-name {
+          font-size: 14px;
+          color: #374151;
+          user-select: none;
+        }
+        
+        .selection-summary {
+          padding-top: 12px;
+          border-top: 1px solid #e1e5e9;
+          font-size: 12px;
+          color: #6b7280;
+          text-align: center;
+        }

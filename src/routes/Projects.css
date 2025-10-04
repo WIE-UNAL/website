@@ -134,10 +134,17 @@
 
 .project .search input {
     border: 1px solid #ED7EFF;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     width: 100%;
     border-radius: 2rem;
     margin-right: 1rem;
+    outline: none;
+    color: #1C0623;
+}
+
+.project .search input:focus,
+.project .search input:focus-visible {
+    border: 1px solid #503589;
 }
 
 .project .search .label {

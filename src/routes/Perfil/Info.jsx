@@ -7,6 +7,7 @@ import { subirFotoUsuario } from "../../ctrl/StorageCtrl";
 import { editarUsuario } from "../../ctrl/UsuarioCtrl";
 import { addCorreo, removeCorreo } from "../../ctrl/CorreoSuscripcionCtrl";
 
+import { formatearFecha } from "../../util/Fecha";
 import { mostrarAlert } from "../../util/Alert";
 
 import "./Info.css"
@@ -110,7 +111,7 @@ export const Info = ({ usuario }) => {
                     </Col>
                     <Col md={12} lg={6} className="information">
                         <p className="label">Cumpleaños</p>
-                        <p className="text">{usuario.cumple}</p>
+                        <p className="text">{formatearFecha(usuario.cumple)}</p>
                     </Col>
                     <Col md={12} lg={6} className="information">
                         <p className="label">¿Suscrito?</p>
@@ -126,7 +127,7 @@ export const Info = ({ usuario }) => {
                                         className="mas"
                                         key={idx}
                                     >
-                                        <i class="fa-solid fa-angle-right"></i> {proyecto.nombre} <br />
+                                        <i class="fa-solid fa-angle-right"></i> {proyecto.cargo} de {proyecto.nombre} <br />
                                     </Link>
                                 ))
                             ) : (
@@ -248,19 +249,24 @@ export const Info = ({ usuario }) => {
                         type="file"
                         accept="image/*"
                         onChange={handleImageChange}
+                        className="form-control"
                     />
                 </Col>
-                
                 </>
             )}
             </Row>
         
         <hr />
-        {!isEditing ? (
-            <button onClick={() => setIsEditing(true)}>Editar</button>
-        ) : (
-            <button onClick={handleSave}>Guardar</button>
-        )}
+        <div className="botones">
+            {!isEditing ? (
+                <button onClick={() => setIsEditing(true)}>Editar</button>
+            ) : (
+                <div>
+                    <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                    <button onClick={handleSave}>Guardar</button>
+                </div>
+            )}
+        </div>
         </Container>
         </div>
     );

@@ -1,24 +1,8 @@
 import { supabase } from "./SupabaseAPI";
 
-export const getNombreById_Estado = async (Id) => {
+export const getCargos = async () => {
     const { data, error } = await supabase
-        .from("estados")
-        .select("nombre")
-        .eq("id_estado", Id);
-
-    if (error) {
-        console.error("[Supabase Error] message:", error.message);
-        console.error("[Supabase Error] details:", error.details);
-        console.error("[Supabase Error] hint:", error.hint);
-        throw error;
-    }
-
-    return data[0].nombre;
-};
-
-export const getEstados = async () => {
-    const { data, error } = await supabase
-        .from("estados")
+        .from("cargos")
         .select("*");
 
     if (error) {
@@ -31,11 +15,11 @@ export const getEstados = async () => {
     return data;
 }
 
-export const deleteEstado = async (id) => {
+export const deleteCargo = async (id_cargo) => {
     const { data, error } = await supabase
-        .from("estados")
+        .from("cargos")
         .delete()
-        .eq("id_estado", id);
+        .eq("id_cargo", id_cargo);
     
     if (error) {
         console.error("[Supabase Error] message:", error.message);
@@ -47,11 +31,11 @@ export const deleteEstado = async (id) => {
     return data && data[0];
 }
 
-export const renameEstado = async (id, nuevoNombre) => {
+export const renameCargo = async (id_cargo, nuevoNombre) => {
     const { error } = await supabase
-        .from("estados")
+        .from("cargos")
         .update({ nombre: nuevoNombre })
-        .eq("id_estado", id)
+        .eq("id_cargo", id_cargo)
         .select();
     
     if (error) {
@@ -62,9 +46,9 @@ export const renameEstado = async (id, nuevoNombre) => {
     }
 }
 
-export const createEstado = async (nombre) => {
+export const createCargo = async (nombre) => {
     const { data, error } = await supabase
-        .from("estados")
+        .from("cargos")
         .insert([{ nombre }])
         .select();
 
