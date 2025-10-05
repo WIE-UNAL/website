@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getEventTitle } from '../ctrl/vTools'; // ✅ Importar tu función
 import "./vTools.css"
 
 export const VToolsManager = ({ 
@@ -11,36 +12,85 @@ export const VToolsManager = ({
 
   const [localVTools, setLocalVTools] = useState(vtools || []);
   const [newVTool, setNewVTool] = useState('');
+  const [loadingTitle, setLoadingTitle] = useState(false); // ✅ Estado para loading
 
   useEffect(() => {
     setLocalVTools(vtools || []);
   }, [vtools]);
 
-  const handleVToolChange = (index, value) => {
+  const handleVToolChange = async (index, value) => {
     const numericValue = value.replace(/[^0-9]/g, '');
-    
     const updatedVTools = [...localVTools];
-    updatedVTools[index] = numericValue;
+    
+    // ✅ Actualizar el ID del objeto existente
+    if (numericValue === '') {
+      updatedVTools[index] = { id: '', title: '' };
+    } else {
+      setLoadingTitle(true);
+      try {
+        const title = await getEventTitle(numericValue);
+        updatedVTools[index] = { 
+          id: parseInt(numericValue), 
+          title: title || `Event ${numericValue}` 
+        };
+      } catch (error) {
+        console.error('Error getting title:', error);
+        updatedVTools[index] = { 
+          id: parseInt(numericValue), 
+          title: `Event ${numericValue}` 
+        };
+      }
+      setLoadingTitle(false);
+    }
     
     setLocalVTools(updatedVTools);
     updateProject(updatedVTools);
   };
 
-  const handleAddVTool = () => {
+  const handleAddVTool = async () => {
     if (newVTool.trim() === '') return;
-    
+
     const numericValue = newVTool.replace(/[^0-9]/g, '');
     if (numericValue === '') return;
 
-    if (localVTools.includes(numericValue)) {
+    // ✅ Verificar si el ID ya existe (comparando con objetos)
+    if (localVTools.some(vtool => vtool.id === parseInt(numericValue))) {
       alert('Este vTool ID ya existe');
       return;
     }
 
-    const updatedVTools = [...localVTools, numericValue];
-    setLocalVTools(updatedVTools);
-    setNewVTool('');
-    updateProject(updatedVTools);
+    setLoadingTitle(true);
+    
+    try {
+      // ✅ Obtener el título del nuevo evento
+      const title = await getEventTitle(numericValue);
+      
+      // ✅ Crear objeto con id y title
+      const newVToolObj = {
+        id: parseInt(numericValue),
+        title: title || `Event ${numericValue}`
+      };
+
+      const updatedVTools = [...localVTools, newVToolObj];
+      setLocalVTools(updatedVTools);
+      setNewVTool('');
+      updateProject(updatedVTools);
+      
+    } catch (error) {
+      console.error('Error getting title:', error);
+      // ✅ Crear objeto incluso si falla la API
+      const newVToolObj = {
+        id: parseInt(numericValue),
+        title: `Event ${numericValue}`
+      };
+      
+      const updatedVTools = [...localVTools, newVToolObj];
+      setLocalVTools(updatedVTools);
+      setNewVTool('');
+      updateProject(updatedVTools);
+    }
+    
+    setLoadingTitle(false);
   };
 
   const handleRemoveVTool = (index) => {
@@ -65,10 +115,10 @@ export const VToolsManager = ({
     if (setProyecto && proyecto) {
       setProyecto({
         ...proyecto,
-        vtools: updatedVTools
+        vtools: updatedVTools // ✅ Pasar objetos completos {id, title}
       });
     }
-    
+
     // Callback opcional para manejar cambios
     if (onVToolsChange) {
       onVToolsChange(updatedVTools);
@@ -83,13 +133,13 @@ export const VToolsManager = ({
     <div className="vtools-manager">
       <div className="vtools-list">
         {localVTools.length > 0 ? (
-          localVTools.map((vtoolId, index) => (
+          localVTools.map((vtoolObj, index) => ( // ✅ Cambié vtoolId por vtoolObj
             <div key={index} className="vtool-item">
               <div className="vtool-input-group">
                 <span className="url-prefix">{urlPrefix}</span>
                 <input
                   type="text"
-                  value={vtoolId}
+                  value={vtoolObj.id || ''} // ✅ Manejar caso donde id puede ser undefined
                   onChange={(e) => handleVToolChange(index, e.target.value)}
                   placeholder="12345"
                   className="vtool-input"
@@ -107,13 +157,17 @@ export const VToolsManager = ({
               </div>
               <div className="full-url-preview">
                 <small>
+                  {vtoolObj.id ? (
                     <a
-                        href={getFullUrl(vtoolId)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >
-                            {getFullUrl(vtoolId)}
-                        </a>
+                      href={getFullUrl(vtoolObj.id)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {getFullUrl(vtoolObj.id)} | {vtoolObj.title || 'Loading...'}
+                    </a>
+                  ) : (
+                    <span>Ingresa un ID válido</span>
+                  )}
                 </small>
               </div>
             </div>
@@ -137,18 +191,20 @@ export const VToolsManager = ({
             className="new-vtool-input"
             pattern="[0-9]*"
             inputMode="numeric"
+            disabled={loadingTitle} // ✅ Deshabilitar mientras carga
           />
           <button
             type="button"
             onClick={handleAddVTool}
-            disabled={!newVTool.trim()}
+            disabled={!newVTool.trim() || loadingTitle}
             className="add-btn"
           >
-            +
+            {loadingTitle ? '...' : '+'} {/* ✅ Mostrar loading */}
           </button>
         </div>
         <small className="add-help-text">
           Solo se permiten números. Presiona Enter para añadir rápidamente.
+          {loadingTitle && <span> Obteniendo título del evento...</span>}
         </small>
       </div>
     </div>

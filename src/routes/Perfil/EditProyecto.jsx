@@ -6,6 +6,7 @@ import { getEstados } from "../../ctrl/EstadosCtrl";
 import { getTags, addTagToProject, removeTagFromProject } from "../../ctrl/TagsCtrl";
 import { subirFotoProyecto, getDefaultProyect } from "../../ctrl/StorageCtrl";
 import { addLiderProyecto } from "../../ctrl/UsuarioCtrl";
+import { getEventTitle } from "../../ctrl/vTools";
 
 import  { MultiTagSelector } from "../../components/MultiSelect";
 import  { VToolsManager } from "../../components/vTools";
@@ -45,6 +46,21 @@ export const EditarProyectoAdmin = (idUsuario) => {
         const fetchEventos = async () => {
         try {
             const fetchedEventos = await buscarProyectosLider(idUsuario);
+            for (const evento of fetchedEventos) {
+                if (evento.vtools && evento.vtools.length > 0) {
+                    const vtoolsConNombres = await Promise.all(
+                        evento.vtools.map(async (vtoolId) => {
+                            const titulo = await getEventTitle(vtoolId);
+                            return {
+                                id: vtoolId,
+                                title: titulo || `Event ${vtoolId}`
+                            };
+                        })
+                    );
+                    
+                    evento.vtools = vtoolsConNombres;
+                }
+            }
             setProyectos(fetchedEventos);
             const fetchedEstados = await getEstados();
             setEstados(fetchedEstados);
@@ -101,9 +117,9 @@ export const EditarProyectoAdmin = (idUsuario) => {
     const handleSave = async () => {
         try {
             let nuevoProyectoId = proyecto.id_proyecto;
+            const vtoolsIds = proyecto.vtools ? proyecto.vtools.map(vtool => vtool.id) : [];
             if (state === "create") {
-
-                const nuevo = await createProyecto(proyecto);
+                const nuevo = await createProyecto(proyecto, vtoolsIds);
                 nuevoProyectoId = nuevo.id_proyecto;
                 if (proyecto.nuevaFoto) { await subirFotoProyecto(proyecto.nuevaFoto, nuevoProyectoId);      }
 
@@ -115,7 +131,8 @@ export const EditarProyectoAdmin = (idUsuario) => {
                 await addLiderProyecto(idUsuario.idUsuario, nuevoProyectoId);
                 await mostrarAlert("success", "¡Proyecto creado exitosamente!");
             } else {
-                await updateProyecto(proyecto.id_proyecto, proyecto);
+                
+                await updateProyecto(proyecto.id_proyecto, proyecto, vtoolsIds);
                 for (const tag of tags) {
                     if (proyecto.tags_ids.includes(tag.id_tag)) {
                         await addTagToProject(proyecto.id_proyecto, tag.id_tag);
@@ -154,10 +171,28 @@ export const EditarProyectoAdmin = (idUsuario) => {
         }
     };
 
-    const handleReturn = () => {
+    const handleReturn = async () => {
         setState("view");
         setProyecto(null);
         setPreviewImage('');
+        const fetchedEventos = await buscarProyectosLider(idUsuario);
+        for (const evento of fetchedEventos) {
+            if (evento.vtools && evento.vtools.length > 0) {
+                const vtoolsConNombres = await Promise.all(
+                    evento.vtools.map(async (vtoolId) => {
+                        const titulo = await getEventTitle(vtoolId);
+                        return {
+                            id: vtoolId,
+                            title: titulo || `Event ${vtoolId}`
+                        };
+                    })
+                );
+                
+                evento.vtools = vtoolsConNombres;
+            }
+        }
+        console.log("Fetched updated projects:", fetchedEventos);
+        setProyectos(fetchedEventos);
     };
 
     return (

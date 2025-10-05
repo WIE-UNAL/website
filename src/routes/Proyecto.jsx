@@ -5,6 +5,7 @@ import "./Proyecto.css";
 
 import { getProyectoById } from "../ctrl/ProyectosCtrl";
 import { buscarUsuariosProyecto } from "../ctrl/UsuarioCtrl";
+import { getEventTitle } from "../ctrl/vTools";
 
 import { formatearFecha } from "../util/Fecha";
 
@@ -24,7 +25,21 @@ const Proyecto = () => {
     useEffect(() => {
         const fetchProyecto = async () => {
             try {
-                setProyecto(await getProyectoById(id_proyecto));
+                const fetchedEvento = await getProyectoById(id_proyecto)
+                if (fetchedEvento.vtools && fetchedEvento.vtools.length > 0) {
+                    const vtoolsConNombres = await Promise.all(
+                        fetchedEvento.vtools.map(async (vtoolId) => {
+                            const titulo = await getEventTitle(vtoolId);
+                            return {
+                                id: vtoolId,
+                                title: titulo || `Event ${vtoolId}`
+                            };
+                        })
+                    );
+                    
+                    fetchedEvento.vtools = vtoolsConNombres;
+                }
+                setProyecto(fetchedEvento);
                 setMiembros(await buscarUsuariosProyecto(id_proyecto));
             } catch (err) {
                 console.error("Error al cargar el proyecto:", err);
@@ -157,17 +172,21 @@ const Proyecto = () => {
                         <Row className="avance mb-3">
                             <h3>Registros vTools</h3>
                             <ul className="links">
-                                {proyecto.vtools.map((link) => (
-                                    <li className="link" key={link}>
-                                        <a
-                                            href={`https://events.vtools.ieee.org/m/${link}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Evento en vTools #{link}
-                                        </a>.
-                                    </li>
-                                ))}
+                                {proyecto.vtools && proyecto.vtools.length > 0 ? (
+                                    proyecto.vtools.map((vtool) => (
+                                        <li className="link" key={vtool.id}>
+                                            <a
+                                                href={`https://events.vtools.ieee.org/m/${vtool.id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                {vtool.title}
+                                            </a>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <p className="desc">No hay registros de vTools disponibles.</p>
+                                )}
                             </ul>
                         </Row>
                         <Row className="stats mb-3">

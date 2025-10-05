@@ -56,7 +56,7 @@ export const buscarProyectos = async (texto, estadosSeleccionados, tagsSeleccion
   const { data, error } = await supabase.rpc("buscar_proyectos_completos", {
       texto_busqueda: texto || null,
       estados_ids: estadosSeleccionados?.length > 0 ? estadosSeleccionados : null,
-      tags_ids: tagsSeleccionados?.length > 0 ? tagsSeleccionados : null,
+      p_tags_ids: tagsSeleccionados?.length > 0 ? tagsSeleccionados : null,
     });
 
   if (error) {
@@ -120,7 +120,8 @@ export const buscarProyectosLider = async (idUsuario) => {
   return proyectosConFoto;
 };
 
-export const updateProyecto = async (id, proyecto) => {
+export const updateProyecto = async (id, proyecto, vtools) => {
+  
   const { data, error } = await supabase
     .from("proyectos")
     .update({
@@ -132,7 +133,8 @@ export const updateProyecto = async (id, proyecto) => {
       nuevos: proyecto.nuevos,
       destacado: proyecto.destacado,
       fecha_creacion: proyecto.fecha_creacion,
-      vtools: proyecto.vtools,
+      vtools: vtools,
+      estado: proyecto.estado
     })
     .eq("id_proyecto", id)
     .select();
@@ -153,7 +155,7 @@ export const updateProyecto = async (id, proyecto) => {
   return proyectoActualizado;
 }
 
-export const createProyecto = async (proyecto) => {
+export const createProyecto = async (proyecto, vtools) => {
   const { data, error } = await supabase
     .from("proyectos")
     .insert([{
@@ -166,7 +168,7 @@ export const createProyecto = async (proyecto) => {
       destacado: proyecto.destacado,
       estado: proyecto.estado,
       fecha_creacion: proyecto.fecha_creacion,
-      vtools: proyecto.vtools
+      vtools: vtools
     }])
     .select();
   if (error) {
